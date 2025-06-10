@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>逃脫迷宮 - 主選單</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./遊戲首頁/style2.css" />
+</head>
+
+<body>
+  <h1>迷宮冒險</h1>
+
+  <button class="menu-btn" onclick="startGame()">開始遊戲</button>
+  <button class="menu-btn" data-sound="click" data-jump="./遊戲首頁/instructions.html">遊戲說明</button>
+
+  <!-- ✅ 先載入 SoundManager -->
+  <script src="./Game/js/soundManager.js"></script>
+
+  <script>
+    // 掛到全域作用域，讓所有 script 都能使用
+    window.SoundManager = SoundManager;
+
+    // 載入常用音效
+    SoundManager.load('click', './Game/audio/select-sound-fixed-extended.mp3', 0.8);
+    // 其他音效如有需要可以解註
+    // SoundManager.load('start', '../Game/audio/game-start-6104.mp3');
+    // SoundManager.load('bgm', '../Game/audio/retro-game-music(gameMusic).mp3', 0.4);
+    // SoundManager.load('hurry', '../Game/audio/game-zone-320262.mp3', 0.8);
+    // SoundManager.load('win', '../Game/audio/game-over(win).mp3');
+    // SoundManager.load('lose', '../Game/audio/game-lose(death).mp3');
+
+    // 自動綁定有 data-sound 和 data-jump 的按鈕
+    SoundManager.autoBind(280);
+
+    // 點開始遊戲時播放點擊音 + 安全預播 bgm
+    window.startGame = function () {
+      SoundManager.play('click', { single: true, cooldown: 500 });
+
+
+      const dummy = new Audio('./Game/audio/retro-game-music(gameMusic).mp3');
+      dummy.volume = 0;
+      dummy.play().then(() => {
+        dummy.pause();
+        const time = Date.now();
+        setTimeout(() => {
+          window.location.href = `./Game/Level_1.html?start=${time}`;
+        }, 280);
+      }).catch(err => {
+        console.warn('無法預播放 BGM', err);
+        alert("瀏覽器阻擋了音效播放，請點擊畫面再試一次");
+      });
+    };
+  </script>
+</body>
+</html>

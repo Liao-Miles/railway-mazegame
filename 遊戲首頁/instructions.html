@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>遊戲說明</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style2.css" />
+</head>
+<body>
+  <h1>遊戲說明</h1>
+  <p>使用方向鍵 (W、A、S、D) 移動角色。</p>
+  <p>避開怪物，尋找出口。</p>
+  <p>怪物不會進安全屋，走進安全屋可以暫停怪物，並點亮地圖。</p>
+  <p>抵達所有安全屋可以永久點亮地圖。</p>
+  <p>提燈數量有限，請謹慎使用。</p>
+  <p>鑽石、提燈、時間是遊戲分數來源 !!</p>
+
+  <p>
+    <button class="menu-btn" data-sound="click" data-jump="../index.html">返回首頁</button>
+  </p>
+
+  <!-- ✅ 載入 SoundManager -->
+  <script src="../Game/js/soundManager.js"></script>
+
+  <script>
+    // 掛到全域作用域（可選）
+    window.SoundManager = SoundManager;
+
+    // 載入音效
+    SoundManager.load('click', '../Game/audio/select-sound-fixed-extended.mp3', 0.8);
+
+    // 自動綁定 data-sound 和 data-jump 的按鈕
+    SoundManager.autoBind(280);
+  </script>
+</body>
+</html>
