@@ -930,6 +930,8 @@ function pauseGameFor3Seconds() {
 //遊戲倒數
 let count2 = 100;
 const countdown2 = setInterval(() => {
+    if (isPaused) return;
+
     if (count2 > 0) {
         count2--;
         document.getElementById('gametime').innerText = `剩餘時間：${count2}`;
