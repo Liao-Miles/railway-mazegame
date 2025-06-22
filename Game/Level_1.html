@@ -13,10 +13,7 @@
 
 <body class="vh-100 d-flex align-items-center justify-content-center">
 
-
-
-
-  <div class="game-wrapper d-flex">
+  <div class="game-wrapper ">
     <!-- 左側設定欄 -->
     <div class="setting p-3">
       <div>
@@ -31,7 +28,7 @@
         <div id="warning3" class="text-danger fw-bold"></div>
       </div>
 
-      <div class="return-btn-wrapper">
+      <div>
         <button class="return-btn" data-sound="click" data-jump="../index.html">返回首頁</button>
       </div>
     </div>
@@ -44,8 +41,6 @@
       </div>
     </div>
 
-
-
     <!-- 右側遊戲網格 -->
     <div class="grid-border-wrapper">
       <div class="grid1" id="grid"></div>
@@ -53,23 +48,18 @@
   </div>
 </body>
 
-
-
-
 <script src="./js/soundManager.js"></script>
-<script src="./main.js"></script>
+<script src="./js/main.js"></script>
 <script>
+  
   SoundManager.load('click', '../Game/audio/select-sound-fixed-extended.mp3', 0.8);
   SoundManager.load('start', './audio/game-start-6104.mp3', 1.0);
   SoundManager.load('bgm', './audio/retro-game-music(gameMusic).mp3', 0.2);
   SoundManager.load('hurry', './audio/game-zone-320262.mp3', 0.2);
   SoundManager.load('win', './audio/game-over(win).mp3', 0.4);
   SoundManager.load('lose', './audio/game-lose(death).mp3', 0.3);
-
   SoundManager.autoBind(280);
+  
 </script>
-
-
-
 
 </html>

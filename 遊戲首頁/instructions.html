@@ -19,17 +19,13 @@
     <button class="menu-btn" data-sound="click" data-jump="../index.html">返回首頁</button>
   </p>
 
-  <!-- ✅ 載入 SoundManager -->
   <script src="../Game/js/soundManager.js"></script>
 
   <script>
-    // 掛到全域作用域（可選）
-    window.SoundManager = SoundManager;
 
-    // 載入音效
+    window.SoundManager = SoundManager;
     SoundManager.load('click', '../Game/audio/select-sound-fixed-extended.mp3', 0.8);
 
-    // 自動綁定 data-sound 和 data-jump 的按鈕
     SoundManager.autoBind(280);
   </script>
 </body>

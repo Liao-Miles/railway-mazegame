@@ -6,115 +6,63 @@
 
 body {
   font-family: 'Cubic11', 'Press Start 2P', monospace;
-  background-color: #2a2a24;
   background-image: url('../遊戲首頁/images2/index_bg2.png');
-  background-repeat: repeat;
-  color: #fce38a;
-  text-shadow: 2px 2px 0 #000;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  margin: 0;
 }
 
 .grid1 {
   display: grid;
   grid-template-columns: repeat(25, 45px);
-  /* 25 格，每格寬 45px */
-  grid-template-rows: repeat(15, 45px);
-  /* 15 行，每格高 45px */
-
-  /* ✅ 使用圖片邊框製作地圖外框 */
+ 
   border: 35px solid transparent;
   border-image-source: url('./images/rounded-background.png');
   border-image-slice: 200 200 250 200 fill;
   border-image-width: 45px;
   border-image-repeat: stretch;
-  border-radius: 23px;
-  border-color: #fce38a;
-
+  border-radius: 15px;
   outline: 2px solid #fce38a;
-  /* ← 跟左欄一致的金色 */
   outline-offset: -8px;
-  /* ← 貼齊邊框 */
-
-  /* ✅ 讓圖片邊框的圓角  生效 */
-  overflow: hidden;
-
-  /* ✅ 若要與左側等高對齊 */
-  box-sizing: border-box;
-  height: auto;
-  /* 通常由內容決定，但你也可加固定高度例如 675px */
-
-
+  /* 貼齊邊框 */
 }
 
 .cell {
   position: relative;
   width: 45px;
   height: 45px;
-  overflow: hidden;
-
 }
 
 .game-wrapper {
   display: flex;
-  align-items: stretch;
-  /* ❗關鍵：讓左右區塊等高 */
-  justify-content: center;
   gap: 10px;
-  /* 不留間隙，讓邊框緊貼 */
-  max-width: 1600px;
 }
 
 .setting {
+  margin: auto;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  /* ✅ 這是關鍵 */
-  align-items: flex-start;
-  /* 讓文字靠左對齊 */
-  gap: 15px;
   font-size: 25px;
-  font-family: 'Cubic11', 'Press Start 2P', monospace;
-  /* ✅ 修正這行 */
-  white-space: nowrap;
+  color: #fce38a;
   background-color: rgba(0, 0, 0, 0.5);
   /* 黑半透明 */
   border: 2px solid #fce38a;
-  /* 金邊 */
-  border-radius: 8px;
-  padding: 12px;
+  border-radius: 10px;
   width: 310px;
-
+  height: 730px;
 }
 
 .return-btn {
-  font-family: 'Cubic11', 'Press Start 2P', monospace;
   font-size: 25px;
   background-color: rgba(0, 0, 0, 0.5);/* 黑底 */
   color: #fce38a;                    /* 金色字 */
   border: 2px solid #fce38a;         /* 金色邊框 */
   border-radius: 8px;
   padding: 8px;
-  cursor: pointer;
-  box-shadow: 2px 2px 0 #000;        /* 類似像素感的陰影 */
-  text-shadow: 1px 1px 0 #000;       /* 字體陰影強化 */
-  transition: transform 0.1s ease, box-shadow 0.1s ease;
 }
 
 .return-btn:hover {
   transform: scale(1.05);
   box-shadow: 0 0 5px 2px #fce38a;   /* 發光感 */
 }
-
-
-/* a {
-  color: #fce38a;
-  text-decoration: none;
-} */
 
 .path {
   background-image: url('./images/cubblestone.png');
@@ -125,12 +73,10 @@ body {
 
 .end {
   background-image: url('./images/cubblestone.png');
-  /* 和 path 一樣的背景 */
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   position: relative;
-  /* 必要，讓 ::after 定位 */
 }
 
 .end::after {
@@ -141,11 +87,9 @@ body {
   width: 100%;
   height: 100%;
   background-image: url('./images/door.png');
-  /* 這是你要用的門圖 */
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  pointer-events: none;
   z-index: 15;
 }
 
@@ -157,13 +101,11 @@ body {
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.2);
-  /* ✅ 和 house 一樣亮度 */
-  pointer-events: none;
   z-index: 14;
-  /* ✅ 比 .end::after 小，才能蓋在 cobblestone 背景上，但不遮門圖 */
+  /*  比 .end::after 小，才能蓋在背景上，但不遮門圖 */
 }
 
-.end.glow::after {
+.end::after {
   animation: strongGlow 1.5s infinite alternate;
 }
 
@@ -184,6 +126,10 @@ body {
   background-position: center;
 }
 
+.player{
+  position: relative;
+} 
+
 .player::after {
   content: "";
   position: absolute;
@@ -193,11 +139,7 @@ body {
   height: 100%;
   background-image: url('./images/fecSAcJ-unscreen.gif');
   background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  pointer-events: none;
-  z-index: 5;
-   transform: scale(1.2);         /* 放大2倍 */
+   transform: scale(1.15);        
   transform-origin: center; 
 
 }
@@ -220,22 +162,16 @@ body {
   background-image: url('./images/house.png');
   background-size: 180% 180%;
   background-repeat: no-repeat;
-  background-position: center 45%;
-  pointer-events: none;
+  background-position: center 42%;
   z-index: 15;
-
+ animation: strongGlow 1.5s infinite alternate;
 }
 
-.house.glow::after {
-  animation: strongGlow 1.5s infinite alternate;
-}
-
-/* 一般 dimmed：比較暗 */
 .dimmed {
   position: relative;
 }
 
-.dimmed::before {
+/* .dimmed::before {
   content: "";
   position: absolute;
   top: 0;
@@ -243,16 +179,8 @@ body {
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.4);
-  /* ✅ 適中偏暗 */
-  pointer-events: none;
   z-index: 15;
-}
-
-/* 安全屋 dimmed：稍微亮一點 */
-.house.dimmed::before {
-  background: rgba(0, 0, 0, 0.2);
-  /* ✅ 不會太亮也不突兀 */
-}
+}  */
 
 .diamond {
   background-image: url('./images/cubblestone.png');
@@ -273,18 +201,7 @@ body {
   background-size: 150% 150%;
   background-repeat: no-repeat;
   background-position: center 55%;
-  pointer-events: none;
   z-index: 15;
-
-}
-
-.diamond.glow::after {
-  animation: strongGlow 1.5s infinite alternate;
-}
-
-.hidden {
-  background-color: black;
-
 }
 
 .overlay {
@@ -293,19 +210,16 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-
   background-image: url('./images/hidden-black-image.png');
   background-size: cover;
   background-position: center;
   opacity: 0.9;
   /* 控制遮罩強度 */
-
   z-index: 10;
-  pointer-events: none;
 }
 
 
-.cell:not(.hidden):not(.dimmed) .overlay {
+.cell:not(.dimmed) .overlay {
   display: none;
 }
 
@@ -313,10 +227,8 @@ body {
 .monster {
   position: absolute;
   width: 120%;
-  /* 放大 */
   height: 120%;
   top: -10%;
-  /* 對齊中心往外擴 */
   left: -10%;
   z-index: 6;
   background-size: cover;
@@ -329,13 +241,10 @@ body {
 .monster2 {
   position: absolute;
   width: 120%;
-  /* 放大 */
   height: 120%;
   top: -10%;
-  /* 對齊中心往外擴 */
   left: -10%;
   z-index: 6;
-
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -344,20 +253,15 @@ body {
 
 .monster3 {
   position: absolute;
-  width: 120%;
-  /* 放大 */
-  height: 120%;
-  top: -30%;
-  /* 對齊中心往外擴 */
-  left: -10%;
-  z-index: 6;
-
+  width: 115%;
+  height: 115%;
+  top: -25%;
+  left: -2%;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   pointer-events: none;
 }
-
 
 .result-overlay {
   position: fixed;
@@ -365,7 +269,7 @@ body {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.75); /* 背景遮罩 */
+  background-color: rgba(0, 0, 0, 0.75); /* 遊戲結算後的背景遮罩 */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -377,11 +281,8 @@ body {
   border: 2px solid #fce38a;
   border-radius: 12px;
   padding: 20px 30px;
-  text-align: left;
   color: #fff7d6;
   font-size: 20px;
-  font-family: 'Cubic11', 'Press Start 2P', monospace;
-  max-width: 90%;
   box-shadow: 0 0 20px gold;
 }
 
@@ -396,13 +297,12 @@ body {
   padding: 10px 20px;
   background-color: #ffe066;
   border: none;
-  color: #000;
   font-weight: bold;
   font-family: inherit;
   font-size: 20px;
   cursor: pointer;
   border-radius: 6px;
-  transition: all 0.2s ease;  /*  加上滑順過渡 */
+  transition: all 0.2s ease; 
 }
 
 /*這是給結算畫面用的*/
@@ -411,8 +311,5 @@ body {
 }
 
 .result-box button:hover {
-  background-color: #fff176;     /* 更亮的金色 */
-  box-shadow: 0 0 8px #fff176, 0 0 12px #ffd700; /* 金光外發光 */
-  transform: scale(1.1);         /* 放大一點點 */
-  transition: all 0.2s ease;     /* 滑順過渡 */
+  transform: scale(1.1);      
 }

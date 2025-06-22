@@ -1,20 +1,20 @@
 window.addEventListener('DOMContentLoaded', () => {
-  const params = new URLSearchParams(window.location.search);
-  const startTime = parseInt(params.get('start') || Date.now());
-  const elapsed = Date.now() - startTime;
+    const params = new URLSearchParams(window.location.search);
+    const startTime = parseInt(params.get('start') || Date.now());
+    const elapsed = Date.now() - startTime;
 
-  console.log(`音效排程開始，已延遲 ${elapsed}ms`);
+    console.log(`音效排程開始，已延遲 ${elapsed}ms`);
 
-  const tryPlay = () => {
-    if (window.SoundManager.allLoaded) {
-      window.SoundManager.startGameAudio(elapsed);
-    } else {
-      console.log('等待音效載入中...');
-      setTimeout(tryPlay, 100);
-    }
-  };
+    const tryPlay = () => {
+        if (window.SoundManager.allLoaded) {
+            window.SoundManager.startGameAudio(elapsed);
+        } else {
+            console.log('等待音效載入中...');
+            setTimeout(tryPlay, 100);
+        }
+    };
 
-  tryPlay();
+    tryPlay();
 });
 
 
@@ -30,7 +30,7 @@ const respawnPoint = {
     y: 14
 };
 
-const seenTiles = Array(15).fill(0).map(() => Array(25).fill(false)); // 地圖高15寬25
+const seenTiles = Array(15).fill(0).map(() => Array(25).fill(false)); // 地圖高15寬25   
 
 
 let lightuse = 10;
@@ -39,10 +39,10 @@ let diamondCount = 0; // 吃了幾顆
 
 //0是死路 1是路 2是終點 3是安全屋 4是鑽石(加分)
 const map1 = [
-    [4, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 2],
+    [4, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 2],
     [1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 1, 0, 0, 1, 1],
-    [1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 1, 0, 1, 1, 0],
-    [1, 0, 1, 1, 1, 0, 3, 0, 0, 1, 0, 4, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 1, 0, 1, 1, 0],
+    [1, 0, 1, 1, 1, 0, 3, 0, 1, 1, 0, 4, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
     [1, 0, 0, 0, 1, 0, 1, 0, 1, 1, 0, 0, 1, 1, 1, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0],
     [1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 3, 0, 1, 1, 1, 1, 0, 1, 0],
     [0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1],
@@ -96,8 +96,7 @@ const maps = [map1, map2, map3];
 
 // 隨機選一張地圖
 const randomIndex = Math.floor(Math.random() * maps.length);
-const currentMap = maps[randomIndex]; // 用這個代替 map1
-
+const currentMap = maps[randomIndex];
 const grid = document.getElementById('grid');
 
 function createGrid() {
@@ -139,8 +138,8 @@ function updatePlayerCell() {
     const cell = document.querySelector(`.cell[data-x="${player.x}"][data-y="${player.y}"]`);
     if (cell) {
         cell.classList.add('player');
-        cell.classList.remove('hidden');
-        cell.classList.remove('dimmed');// ✅ 讓目前位置亮起
+
+        cell.classList.remove('dimmed');//讓目前位置亮起
         const overlay = cell.querySelector('.overlay');
         if (overlay) overlay.style.display = 'none';
     }
@@ -148,7 +147,7 @@ function updatePlayerCell() {
 
 
 let lastMoveTime = 0;
-const moveCooldown = 100; // 毫秒 = 0.1 秒
+const moveCooldown = 100;
 
 window.addEventListener('keydown', handlePlayerMove);
 
@@ -171,7 +170,7 @@ function handlePlayerMove(event) {
     else if (key === "d") newX += 1;
     else if (key === "f") {
         light();
-        return;  // 提燈不算移動
+        return;
     }
     else return;
 
@@ -187,7 +186,7 @@ function handlePlayerMove(event) {
 
         const wallCell = document.querySelector(`.cell[data-x="${newX}"][data-y="${newY}"]`);
         if (wallCell) {
-            wallCell.classList.remove('hidden');
+            wallCell.classList.remove('dimmed');
             const overlay = wallCell.querySelector('.overlay');
             if (overlay) overlay.style.display = 'none';
         }
@@ -203,7 +202,7 @@ function handlePlayerMove(event) {
     // 走過的路標示
     const oldCell = document.querySelector(`.cell[data-x="${player.x}"][data-y="${player.y}"]`);
     if (oldCell && !oldCell.classList.contains('end')) {
-        oldCell.classList.remove('hidden');
+        oldCell.classList.remove('dimmed');
         const overlay = oldCell.querySelector('.overlay');
         if (overlay) overlay.style.display = 'none';
     }
@@ -215,7 +214,7 @@ function handlePlayerMove(event) {
     //  踩到鑽石（地圖值為 4）
     if (currentMap[newY][newX] === 4) {
         diamondCount++;                     // 吃一顆
-        currentMap[newY][newX] = 1;               // 改成路，移除鑽石
+        currentMap[newY][newX] = 1;         // 改成路，移除鑽石
 
         // 更新地圖顯示
         const diamondCell = document.querySelector(`.cell[data-x="${newX}"][data-y="${newY}"]`);
@@ -277,18 +276,19 @@ function light() {
         // 防止越界（這裡以地圖的大小來處理）
         if (nx < 0 || nx >= currentMap[0].length || ny < 0 || ny >= currentMap.length) return;
 
-        const value = currentMap[ny][nx];
+
         const cell = document.querySelector(`.cell[data-x="${nx}"][data-y="${ny}"]`);
         if (!cell) return;
 
-        cell.classList.remove('hidden'); // 顯示這格
+        cell.classList.remove('dimmed'); // 顯示這格
 
+        const value = currentMap[ny][nx];
         // 加上正確的 class
         if (value === 1) cell.classList.add('path');
         else if (value === 2) cell.classList.add('end');
         else if (value === 0) cell.classList.add('dead');
-        
-         // 移除遮罩
+
+        // 移除遮罩
         const overlay = cell.querySelector('.overlay');
         if (overlay) overlay.style.display = 'none';
     });
@@ -374,10 +374,9 @@ function checkCollision() {
         clearInterval(monster2.interval);
         clearInterval(monster3.interval);
         window.removeEventListener('keydown', handlePlayerMove);
-        // ✅ 播放死亡音效並停止音樂
+
         SoundManager.endGameAudio('lose');
 
-        // ✅ 等 4 秒後才跳轉
         setTimeout(restartGame, 4000);
     }
 }
@@ -426,8 +425,6 @@ let monster = {
     y: 14,
     prevX: 0,
     prevY: 0,
-    prevPrevX: 0,
-    prevPrevY: 0,
     mode: "patrol",
     observeCooldown: 0
 };
@@ -498,8 +495,7 @@ function moveMonster(reservedPositions) {
                     currentMap[p.y][p.x] !== 0 &&
                     !(p.x === monster.x && p.y === monster.y)
                 );
-            const isBackStep = (pos.x === monster.prevX && pos.y === monster.prevY) ||
-                (pos.x === monster.prevPrevX && pos.y === monster.prevPrevY);
+            const isBackStep = (pos.x === monster.prevX && pos.y === monster.prevY);
             return exits.length >= 1 && !isBackStep;
         });
 
@@ -524,8 +520,6 @@ function moveMonster(reservedPositions) {
         if (oldMonster) oldMonster.remove();
     }
 
-    monster.prevPrevX = monster.prevX ?? monster.x;
-    monster.prevPrevY = monster.prevY ?? monster.y;
     monster.prevX = monster.x;
     monster.prevY = monster.y;
     monster.x = next.x;
@@ -550,8 +544,6 @@ let monster2 = {
     y: 0,
     prevX: 0,
     prevY: 0,
-    prevPrevX: 0,
-    prevPrevY: 0,
     mode: "patrol",
     observeCooldown: 0
 };
@@ -620,8 +612,7 @@ function moveMonster2(reservedPositions) {
                     currentMap[p.y][p.x] !== 0 &&
                     !(p.x === monster2.x && p.y === monster2.y)
                 );
-            const isBackStep = (pos.x === monster2.prevX && pos.y === monster2.prevY) ||
-                (pos.x === monster2.prevPrevX && pos.y === monster2.prevPrevY);
+            const isBackStep = (pos.x === monster2.prevX && pos.y === monster2.prevY);
             return exits.length >= 1 && !isBackStep;
         });
 
@@ -646,8 +637,6 @@ function moveMonster2(reservedPositions) {
         if (oldMonster) oldMonster.remove();
     }
 
-    monster2.prevPrevX = monster2.prevX ?? monster2.x;
-    monster2.prevPrevY = monster2.prevPrevY ?? monster2.y;
     monster2.prevX = monster2.x;
     monster2.prevY = monster2.y;
     monster2.x = next.x;
@@ -670,8 +659,8 @@ function moveMonster2(reservedPositions) {
 let monster3 = {
     x: 20,
     y: 1,
-    prevX: null,
-    prevY: null,
+    prevX: 0,
+    prevY: 0,
     mode: "patrol"
 };
 
@@ -691,7 +680,7 @@ function drawMonster3() {
 }
 
 function moveMonster3(reservedPositions) {
-    // 玩家是否進入領地？
+
     const playerInTerritory = isInMonster3Territory(player.x, player.y);
 
     const directions = [
@@ -737,7 +726,7 @@ function moveMonster3(reservedPositions) {
 
     if (validMoves.length === 0) return;
     const next = validMoves[0];
-    reservedPositions.push({ x: next.x, y: next.y }); // ✅ 預約位置（防撞）
+    reservedPositions.push({ x: next.x, y: next.y }); //  預約位置（防撞）
 
     // 清除舊位置
     const oldCell = document.querySelector(`.cell[data-x="${monster3.x}"][data-y="${monster3.y}"]`);
@@ -760,26 +749,26 @@ function moveMonster3(reservedPositions) {
 let tick = 0;
 
 setInterval(() => {
-    if (!isGameStarted || isPaused || isGameOver) return; // ✅ 加上 isPaused
+    if (!isGameStarted || isPaused || isGameOver) return;
 
     const reservedPositions = [];
 
-    if (tick % 8 === 0) moveMonster(reservedPositions);   // 怪物1：0.8 秒移動
-    if (tick % 10 === 0) moveMonster2(reservedPositions); // 怪物2：1.0 秒移動
+    if (tick % 7 === 0) moveMonster(reservedPositions);   // 怪物1：0.7 秒移動
+    if (tick % 9 === 0) moveMonster2(reservedPositions); // 怪物2：0.8 秒移動
     if (tick % 5 === 0) moveMonster3(reservedPositions);  // 怪物3：0.5 秒移動
 
     tick++;
 }, 100); // 每 100ms 為一個 tick
 
 
-// ✅ 暫停所有怪物行動
+//  暫停所有怪物行動
 function stopMonstersTemporarily() {
     isPaused = true;
 }
 
-// ✅ 恢復所有怪物行動
+//  恢復所有怪物行動
 function resumeMonsters() {
-    isPaused = false; // ✅ 讓主迴圈繼續
+    isPaused = false;
 }
 
 function checkWarning() {
@@ -805,7 +794,7 @@ function checkWarning3() {
 
 function showFullMap() {
     document.querySelectorAll('.cell').forEach(cell => {
-        cell.classList.remove('hidden');
+
         cell.classList.remove('dimmed');
     });
 }
@@ -840,23 +829,23 @@ function hideMap() {
 
         if (x === player.x && y === player.y) {
             // 玩家所在的格子不能遮
-            cell.classList.remove('hidden', 'dimmed');
+            cell.classList.remove('dimmed');
             return;
         }
 
-        cell.classList.remove('hidden', 'dimmed'); // 先清空舊遮罩
+        cell.classList.remove('dimmed'); // 先清空舊遮罩
 
-        cell.classList.remove('hidden', 'dimmed', 'glow', 'end', 'house'); // 清除所有狀態類別
+        cell.classList.remove('dimmed', 'end', 'house'); // 清除所有狀態類別
 
         if (mapValue === 3) {
             // 安全屋
-            cell.classList.add('dimmed', 'house', 'glow');
+            cell.classList.add('dimmed', 'house');
         } else if (mapValue === 2) {
             // 終點
-            cell.classList.add('dimmed', 'end', 'glow');
+            cell.classList.add('dimmed', 'end');
         } else {
             // 黑幕遮罩
-            cell.classList.add('hidden');
+            cell.classList.add('dimmed');
         }
 
 
@@ -880,7 +869,7 @@ function checkHouseTrigger() {
 
     if (currentTile === 3 && !triggeredHouses.has(key)) {
         triggeredHouses.add(key);
-        updateHouseStatus(); // ✅ 更新 UI 顯示
+        updateHouseStatus(); // 
         pauseGameFor3Seconds();
 
         // 如果三間都觸發了，永久亮圖
@@ -907,13 +896,11 @@ function showLightCountdown(seconds) {
     }, 1000);
 }
 
-
 function pauseGameFor3Seconds() {
     isPaused = true;
 
-    // 暫時全亮
     showFullMap();
-    showLightCountdown(3); // ✅ 顯示倒數提示
+    showLightCountdown(3);
 
     // 暫停玩家與怪物行動
     window.removeEventListener('keydown', handlePlayerMove);
@@ -940,27 +927,19 @@ const countdown2 = setInterval(() => {
         isGameOver = true;
         document.getElementById('countdown').innerText = "時間到了！";
 
-        // ✅ 停止所有怪物、玩家輸入
-        clearInterval(monster.interval);
-        clearInterval(monster2.interval);
-        clearInterval(monster3.interval);
         window.removeEventListener('keydown', handlePlayerMove);
 
-        // ✅ 播放死亡音效，停止背景音樂
         SoundManager.endGameAudio('lose');
 
-        // ✅ 等 4 秒後才重啟
         setTimeout(restartGame, 4000);
     }
 }, 1000);
 
 
-
 //重啟遊戲
 function restartGame() {
-    SoundManager.stopAll();        // 停止所有音效
+    SoundManager.stopAll();
     SoundManager.play('click', { single: true, cooldown: 500 });
-
 
 
     // 等 300ms 再跳轉，讓點擊音效播放出來
@@ -969,35 +948,23 @@ function restartGame() {
     }, 300);
 }
 
-
-
 //遊戲贏了
 let isGameOver = false;
 function winGame() {
     isGameOver = true;
 
-    // ✅ 玩家消失（移除 .player 類別）
+    // 玩家消失（移除 .player 類別）
     const playerCell = document.querySelector('.cell.player');
     if (playerCell) {
         playerCell.classList.remove('player');
     }
 
-
-    // 顯示勝利文字
     document.getElementById('countdown').innerText = " 你贏了 !！";
 
-    // 解除地圖遮罩，讓玩家看到整張地圖
     showFullMap();
 
-    // 停止怪物移動
-    clearInterval(monster.interval);
-    clearInterval(monster2.interval);
-    clearInterval(monster3.interval);
-
-    // 移除玩家移動的事件監聽，停止玩家操作
     window.removeEventListener('keydown', handlePlayerMove);
 
-    // 停止倒數計時
     clearInterval(countdown2);
 
     SoundManager.stopAll();
@@ -1028,47 +995,43 @@ function winGame() {
 }
 
 function closeResult() {
-  document.getElementById('gameResult').classList.add('hidden2');
+    document.getElementById('gameResult').classList.add('hidden2');
 }
 window.closeResult = closeResult;
 
 document.addEventListener('click', function (e) {
-  const el = e.target.closest('[data-sound]');
-  if (el) {
-    const sound = el.dataset.sound;
-    const action = el.dataset.action;
+    const el = e.target.closest('[data-sound]');
+    if (el) {
+        const sound = el.dataset.sound;
+        const action = el.dataset.action;
 
-    const audio = new Audio(`.//select-sound-fixed.mp3`);
-    audio.play();
+        const audio = new Audio(`.//select-sound-fixed.mp3`);
+        audio.play();
 
-    if (action && typeof window[action] === 'function') {
-      setTimeout(() => {
-        window[action]();
-      }, 200); // 延遲 200ms 播音效後再關閉
+        if (action && typeof window[action] === 'function') {
+            setTimeout(() => {
+                window[action]();
+            }, 200); 
+        }
     }
-  }
 });
-
-
 
 window.addEventListener('keydown', (e) => {
-  const isF5 = e.key === 'F5';
-  const isCtrlR = (e.key === 'r' || e.key === 'R') && e.ctrlKey;
+    const isF5 = e.key === 'F5';
+    const isCtrlR = (e.key === 'r' || e.key === 'R') && e.ctrlKey;
 
-  if (isF5 || isCtrlR) {
-    e.preventDefault(); // 阻止刷新行為
-    SoundManager.stopAll();        // 停止所有音樂
-    SoundManager.play('click', { single: true, cooldown: 500 });
+    if (isF5 || isCtrlR) {
+        e.preventDefault(); // 阻止刷新行為
+        SoundManager.stopAll();        // 停止所有音樂
+        SoundManager.play('click', { single: true, cooldown: 500 });
 
 
 
-    setTimeout(() => {
-      window.location.href = "../index.html";
-    }, 300); // 延遲跳轉，讓音效播放完
-  }
+        setTimeout(() => {
+            window.location.href = "../index.html";
+        }, 300); // 延遲跳轉，讓音效播放完
+    }
 });
-
-
 
 // 初始化流程
 createGrid();

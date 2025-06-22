@@ -1,6 +1,3 @@
-// ✅ 非模組形式 SoundManager，可直接雙擊 index.html 使用
-// ✅ 支援 play(name, { single: true }) 防止短時間重播
-
 window.SoundManager = {
   sounds: {},
   loadedFlags: {},
@@ -13,6 +10,7 @@ window.SoundManager = {
       button.addEventListener('click', () => {
         const url = button.getAttribute('data-jump');
         const sound = button.getAttribute('data-sound');
+        
         if (sound) this.play(sound, { single: true });
         this._timers.push(setTimeout(() => {
           window.location.href = url;
@@ -35,7 +33,7 @@ window.SoundManager = {
       console.log(` 音效 ${name} 載入完成`);
       this.allLoaded = Object.values(this.loadedFlags).every(Boolean);
       if (this.allLoaded) {
-        console.log('✅ 所有音效已載入完成');
+        console.log('所有音效已載入完成');
       }
     });
 
@@ -45,7 +43,7 @@ window.SoundManager = {
   play: function (name, options = {}) {
     const audio = this.sounds[name];
     if (!audio || !this.loadedFlags[name]) {
-      console.warn(`⚠️ 音效 ${name} 尚未載入完成或不存在`);
+      console.warn(`音效 ${name} 尚未載入完成或不存在`);
       return;
     }
 
@@ -54,7 +52,7 @@ window.SoundManager = {
       const last = this._lastPlayTime[name] || 0;
       const cooldown = options.cooldown || 300; // 預設 300ms 內不重播
       if (now - last < cooldown) {
-        // console.log(`音效 ${name} 單次播放冷卻中，跳過`);
+       console.log(`音效 ${name} 單次播放冷卻中，跳過`);
         return;
       }
       this._lastPlayTime[name] = now;
@@ -62,7 +60,7 @@ window.SoundManager = {
 
     audio.currentTime = 0;
     audio.play().catch(err => {
-      console.warn(`⚠️ 播放失敗:`, err);
+      console.warn(`播放失敗:`, err);
     });
   },
 
@@ -80,7 +78,7 @@ window.SoundManager = {
         sound.pause();
         sound.currentTime = 0;
       } catch (err) {
-        console.warn(`⚠️ 無法停止音效`, err);
+        console.warn(`  無法停止音效`, err);
       }
     }
     this._timers.forEach(clearTimeout);
@@ -98,7 +96,7 @@ window.SoundManager = {
     const hurryStart = startDuration + bgmDuration + gap;
 
     if (!this.loadedFlags['start'] || !this.loadedFlags['bgm'] || !this.loadedFlags['hurry']) {
-      console.warn('⚠️ 音效尚未載入完成，跳過播放');
+      console.warn(' 音效尚未載入完成，跳過播放');
       return;
     }
 
