@@ -6,7 +6,7 @@
 
 body {
   font-family: 'Cubic11', 'Press Start 2P', monospace;
-  background-image: url('../遊戲首頁/images2/index_bg2.png');
+  background-image: url('../HomePage/images2/index_bg2.png');
 }
 
 .grid1 {
@@ -45,7 +45,7 @@ body {
   background-color: rgba(0, 0, 0, 0.5);
   /* 黑半透明 */
   border: 2px solid #fce38a;
-  border-radius: 10px;
+  border-radius: 8px;
   width: 310px;
   height: 730px;
 }

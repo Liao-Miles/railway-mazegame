@@ -19,14 +19,12 @@
     <button class="menu-btn" data-sound="click" data-jump="../index.html">返回首頁</button>
   </p>
 
-  <script src="../Game/js/soundManager.js"></script>
-
-  <script>
-
-    window.SoundManager = SoundManager;
+  <script type="module">
+    import SoundManager from '../Game/js/soundManager.js';
     SoundManager.load('click', '../Game/audio/select-sound-fixed-extended.mp3', 0.8);
-
     SoundManager.autoBind(280);
   </script>
 </body>
 </html>
+
+

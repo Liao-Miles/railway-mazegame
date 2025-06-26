@@ -1,4 +1,4 @@
-window.SoundManager = {
+const SoundManager = {
   sounds: {},
   loadedFlags: {},
   allLoaded: false,
@@ -86,19 +86,28 @@ window.SoundManager = {
   },
 
   startGameAudio: function (elapsed = 0) {
+
+     // 先停止所有音樂與計時器，避免殘留
+    this.stopAll();
+
     const start = this.sounds['start'];
     const bgm = this.sounds['bgm'];
     const hurry = this.sounds['hurry'];
 
     const startDuration = 2000;
-    const bgmDuration = 66000;
-    const gap = 2000;
+    const bgmDuration = 65500;
+    const gap = 500;
     const hurryStart = startDuration + bgmDuration + gap;
 
     if (!this.loadedFlags['start'] || !this.loadedFlags['bgm'] || !this.loadedFlags['hurry']) {
       console.warn(' 音效尚未載入完成，跳過播放');
       return;
     }
+
+    // 確保每首歌都歸零
+    start.pause(); start.currentTime = 0;
+    bgm.pause(); bgm.currentTime = 0;
+    hurry.pause(); hurry.currentTime = 0;
 
     if (elapsed < startDuration) {
       start.currentTime = elapsed / 1000;
@@ -137,3 +146,5 @@ window.SoundManager = {
     this.play(result === 'win' ? 'win' : 'lose');
   }
 };
+
+export default SoundManager;

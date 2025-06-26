@@ -5,23 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>逃脫迷宮 - 主選單</title>
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="./遊戲首頁/style2.css" />
+  <link rel="stylesheet" href="./HomePage/style2.css" />
 </head>
 
 <body>
   <h1>迷宮冒險</h1>
 
   <button class="menu-btn" onclick="startGame()">開始遊戲</button>
-  <button class="menu-btn" data-sound="click" data-jump="./遊戲首頁/instructions.html">遊戲說明</button>
+  <button class="menu-btn" data-sound="click" data-jump="./HomePage/instructions.html">遊戲說明</button>
 
-  <script src="./Game/js/soundManager.js"></script>
+  <script type="module">
+    import SoundManager from './Game/js/soundManager.js';
 
-  <script>
-    // 掛到全域作用域，讓所有 script 都能使用
-    window.SoundManager = SoundManager;
     SoundManager.load('click', './Game/audio/select-sound-fixed-extended.mp3', 0.8);
 
-    // 點開始遊戲時播放點擊音 + 安全預播 bgm
     window.startGame = function () {
       SoundManager.play('click', { single: true, cooldown: 500 });
 
@@ -43,3 +40,4 @@
   </script>
 </body>
 </html>
+
