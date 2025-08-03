@@ -71,3 +71,11 @@ monster.drawMonster3();
 monster.startMonsterLoop();
 
 
+window.addEventListener('DOMContentLoaded', () => {
+  const playerId = sessionStorage.getItem('playerId'); // 取得登入時存的名稱
+  const displayElement = document.getElementById('playerIdDisplay');
+
+  if (playerId && displayElement) {
+    displayElement.textContent = `玩家:${playerId}`;
+  }
+});

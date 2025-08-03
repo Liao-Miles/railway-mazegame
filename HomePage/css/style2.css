@@ -1,18 +1,17 @@
 @font-face {
   font-family: 'Cubic11';
-  src: url('../Game/font_style/Cubic_11.woff2') format('woff2');
+  src: url('../../Game/font_style/Cubic_11.woff2') format('woff2');
   font-display: swap;
 }
 
 body {
   font-family: 'Cubic11', 'Press Start 2P', monospace;
   background-color: #2a2a24;
-  background-image: url('./images2/index_bg2.png');
+  background-image: url('../images2/index_bg2.png');
   background-size: cover; /* 拉伸圖片鋪滿整個畫面 */
   background-position: center; /* 圖片置中 */
   background-repeat: no-repeat; /* 不重複 */
   color: #fce38a;
-  text-shadow: 2px 2px 0 #000;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -47,7 +46,3 @@ h1 {
   transform: scale(1.05);
 }
 
-a{
-    color: aqua;
-    text-decoration: none;
-}

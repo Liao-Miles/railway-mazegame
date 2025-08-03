@@ -1,22 +1,82 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>逃脫迷宮 - 主選單</title>
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="./HomePage/style2.css" />
+  <link rel="stylesheet" href="./HomePage/css/style2.css" />
+  <link rel="stylesheet" href="./HomePage/css/login.css" />
 </head>
 
 <body>
+  
   <h1>迷宮冒險</h1>
+  
 
   <button class="menu-btn" onclick="startGame()">開始遊戲</button>
   <button class="menu-btn" data-sound="click" data-jump="./HomePage/instructions.html">遊戲說明</button>
+  <button class="menu-btn" data-sound="click" onclick="toggleModal(true)">玩家登入</button>
+  <p id="playerIdDisplay" class="hidden"></p>
+
+  
+  <!-- 彈出式登入/註冊框 -->
+  <div id="authModal" class="modal hidden">
+    <div class="modal-content">
+      <span class="close-btn" onclick="toggleModal(false)">×</span>
+
+
+      <form id="loginForm" onsubmit="handleLogin(event)">
+        <h2>玩家登入</h2>
+        <label>
+          帳號:
+          <input type="text" placeholder="帳號" required />
+        </label>
+
+        <label>
+          密碼:
+          <input type="password" placeholder="密碼" required />
+        </label>
+
+        <button type="submit">登入</button>
+        <p>還沒有帳號？<a href="#" onclick="switchForm('register')">點我註冊</a></p>
+      </form>
+
+
+      <form id="registerForm" class="hidden" onsubmit="handleRegister(event)">
+        <h2>玩家註冊</h2>
+
+        <label>
+          <span>遊戲ID:</span>
+          <input type="text" placeholder="請輸入您的名稱" required />
+        </label>
+
+        <label>
+          <span>帳號:</span>
+          <input type="text" placeholder="帳號" required />
+        </label>
+
+        <label>
+          <span>密碼:</span>
+          <input type="password" placeholder="密碼" required />
+        </label>
+
+        <button type="submit">註冊</button>
+        <p>已有帳號？<a href="#" onclick="switchForm('login')">回到登入</a></p>
+      </form>
+    </div>
+  </div>
+
+  <!-- 玩家資訊框 -->
+  <div id="playerInfo">
+    <button id="logoutBtn" data-sound="click" onclick="logout()">登出</button>
+  </div>
+
 
   <script type="module">
     import SoundManager from './Game/js/soundManager.js';
-
+    import './HomePage/js/login.js';
     SoundManager.load('click', './Game/audio/select-sound-fixed-extended.mp3', 0.8);
 
     window.startGame = function () {
@@ -39,5 +99,5 @@
     SoundManager.autoBind(280);
   </script>
 </body>
-</html>
 
+</html>

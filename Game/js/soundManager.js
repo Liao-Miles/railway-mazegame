@@ -147,4 +147,6 @@ const SoundManager = {
   }
 };
 
+SoundManager.load('click', './audio/click-sound.mp3', 1); // 載入點擊音效
+
 export default SoundManager;

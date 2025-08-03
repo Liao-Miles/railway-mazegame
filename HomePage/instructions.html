@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>遊戲說明</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style2.css" />
+  <link rel="stylesheet" href="../HomePage/css/style2.css" />
 </head>
 <body>
   <h1>遊戲說明</h1>
@@ -19,9 +19,34 @@
     <button class="menu-btn" data-sound="click" data-jump="../index.html">返回首頁</button>
   </p>
 
+    <!-- 玩家資訊框 -->
+  <div id="playerInfo" class="player-info hidden">
+    <p id="playerName"></p>
+  </div>
+
   <script type="module">
     import SoundManager from '../Game/js/soundManager.js';
     SoundManager.load('click', '../Game/audio/select-sound-fixed-extended.mp3', 0.8);
+
+    // 顯示玩家資訊框
+    window.showPlayerInfo = function (playerName) {
+      const playerInfo = document.getElementById('playerInfo');
+      const playerNameElement = document.getElementById('playerName');
+      if (playerInfo && playerNameElement) {
+        playerNameElement.textContent = `遊戲ID: ${playerName}`;
+        playerInfo.classList.remove('hidden');
+      }
+    };
+
+    // 檢查登入狀態
+    window.onload = function () {
+      const playerId = sessionStorage.getItem('playerId');
+      if (playerId) {
+        showPlayerInfo(playerId);
+      }
+    };
+
+
     SoundManager.autoBind(280);
   </script>
 </body>

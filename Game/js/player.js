@@ -3,6 +3,7 @@ import {isGameStarted, isGameOver, isPaused,
         checkHouseTrigger, setGameOver, restartGame,winGame} from './gameLogic.js' ;
 import { currentMap } from './grid.js';
 import {monster,monster2,monster3} from "./monster.js"
+import SoundManager from './soundManager.js'; // 引入 SoundManager
 
 let player = {
     x: 0,
@@ -184,7 +185,7 @@ function light() {
     document.getElementById('lightCount').innerText = `提燈剩餘：${lightuse}`;
 }
 
-//撞到怪物死亡
+// 撞到怪物死亡
 function checkCollision() {
     if (isGameOver) return;
 
@@ -200,7 +201,7 @@ function checkCollision() {
         clearInterval(monster3.interval);
         window.removeEventListener('keydown', handlePlayerMove);
 
-        SoundManager.endGameAudio('lose');
+        SoundManager.endGameAudio('lose'); // 確保 SoundManager 已正確引入
 
         setTimeout(restartGame, 4000);
     }
