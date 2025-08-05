@@ -122,7 +122,7 @@ function drawMonster() {
     if (cell) {
         const monsterImg = document.createElement('div');
         monsterImg.className = 'monster';
-        monsterImg.style.backgroundImage = "url('./images/monster1.gif')";
+        monsterImg.style.backgroundImage = "url('../assets/images/monster1.gif')";
         monsterImg.style.backgroundSize = 'cover';
         cell.appendChild(monsterImg);
     }
@@ -216,7 +216,7 @@ function moveMonster(reservedPositions) {
     if (newCell) {
         const newMonster = document.createElement('div');
         newMonster.className = 'monster';
-        newMonster.style.backgroundImage = "url('./images/monster1.gif')";
+        newMonster.style.backgroundImage = "url('../assets/images/monster1.gif')";
         newMonster.style.backgroundSize = 'cover';
         newCell.appendChild(newMonster);
     }
@@ -240,7 +240,7 @@ function drawMonster2() {
     if (cell) {
         const monsterImg = document.createElement('div');
         monsterImg.className = 'monster2';
-        monsterImg.style.backgroundImage = "url('./images/monster2.gif')";
+        monsterImg.style.backgroundImage = "url('../assets/images/monster2.gif')";
         monsterImg.style.backgroundSize = 'cover';
         cell.appendChild(monsterImg);
     }
@@ -333,7 +333,7 @@ function moveMonster2(reservedPositions) {
     if (newCell) {
         const newMonster = document.createElement('div');
         newMonster.className = 'monster2';
-        newMonster.style.backgroundImage = "url('./images/monster2.gif')";
+        newMonster.style.backgroundImage = "url('../assets/images/monster2.gif')";
         newMonster.style.backgroundSize = 'cover';
         newCell.appendChild(newMonster);
     }
@@ -360,7 +360,7 @@ function drawMonster3() {
     if (cell) {
         const m = document.createElement('div');
         m.className = 'monster3';
-        m.style.backgroundImage = "url('./images/monster3.gif')";
+        m.style.backgroundImage = "url('../assets/images/monster3.gif')";
         m.style.backgroundSize = 'cover';
         cell.appendChild(m);
     }

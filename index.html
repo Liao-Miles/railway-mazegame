@@ -6,8 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>逃脫迷宮 - 主選單</title>
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="./HomePage/css/style2.css" />
-  <link rel="stylesheet" href="./HomePage/css/login.css" />
+  <link rel="stylesheet" href="./assets/css/login.css" />
+  <link rel="stylesheet" href="./assets/css/index.css" />
 </head>
 
 <body>
@@ -16,8 +16,10 @@
   
 
   <button class="menu-btn" onclick="startGame()">開始遊戲</button>
-  <button class="menu-btn" data-sound="click" data-jump="./HomePage/instructions.html">遊戲說明</button>
-  <button class="menu-btn" data-sound="click" onclick="toggleModal(true)">玩家登入</button>
+  <button class="menu-btn" data-sound="click" data-jump="./instructions.html">遊戲說明</button>
+  <button class="menu-btn" data-sound="click" data-jump="./leaderboard.html">排行榜</button>
+  <button class="menu-btn" data-sound="click" data-jump="./achievements.html">成就</button>
+  <button class="menu-btn" data-sound="click" onclick="toggleModal(true)">登入</button>
   <p id="playerIdDisplay" class="hidden"></p>
 
   
@@ -48,7 +50,7 @@
         <h2>玩家註冊</h2>
 
         <label>
-          <span>遊戲ID:</span>
+          <span>玩家名稱:</span>
           <input type="text" placeholder="請輸入您的名稱" required />
         </label>
 
@@ -75,20 +77,20 @@
 
 
   <script type="module">
-    import SoundManager from './Game/js/soundManager.js';
-    import './HomePage/js/login.js';
-    SoundManager.load('click', './Game/audio/select-sound-fixed-extended.mp3', 0.8);
+    import SoundManager from './assets/js/soundManager.js';
+    import './assets/js/login.js';
+    SoundManager.load('click', '../audio/select-sound-fixed-extended.mp3', 0.8);
 
     window.startGame = function () {
       SoundManager.play('click', { single: true, cooldown: 500 });
 
-      const dummy = new Audio('./Game/audio/retro-game-music(gameMusic).mp3');
+      const dummy = new Audio('./assets/audio/retro-game-music(gameMusic).mp3');
       dummy.volume = 0;
       dummy.play().then(() => {
         dummy.pause();
         const time = Date.now();
         setTimeout(() => {
-          window.location.href = `./Game/Level_1.html?start=${time}`;
+          window.location.href = `./Level_1.html?start=${time}`;
         }, 280);
       }).catch(err => {
         console.warn('無法預播放 BGM', err);

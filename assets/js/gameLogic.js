@@ -47,15 +47,20 @@ function showFullMap() {
     });
 }
 
-//開局倒數
+// 開局倒數
 let count = 10;
 const countdown = setInterval(() => {
+    const countdownElem = document.getElementById('countdown');
     if (count > 0) {
-        document.getElementById('countdown').innerText = `天黑倒數：${count}`;
+        if (countdownElem) {
+            countdownElem.innerText = `天黑倒數：${count}`;
+        }
         count--;
     } else {
         clearInterval(countdown);
-        document.getElementById('countdown').innerText = '遊戲開始！';
+        if (countdownElem) {
+            countdownElem.innerText = '遊戲開始！';
+        }
         hideMap();
         isGameStarted = true; // 倒數完，才開始接受按鍵
     }
@@ -160,18 +165,25 @@ function pauseGameFor3Seconds() {
     }, 3000);
 }
 
-//遊戲倒數
+// 遊戲倒數
 let count2 = 100;
 const countdown2 = setInterval(() => {
     if (isPaused) return;
 
+    const gametimeElem = document.getElementById('gametime');
+    const countdownElem = document.getElementById('countdown');
+
     if (count2 > 0) {
         count2--;
-        document.getElementById('gametime').innerText = `剩餘時間：${count2}`;
+        if (gametimeElem) {
+            gametimeElem.innerText = `剩餘時間：${count2}`;
+        }
     } else {
         clearInterval(countdown2);
         isGameOver = true;
-        document.getElementById('countdown').innerText = "時間到了！";
+        if (countdownElem) {
+            countdownElem.innerText = "時間到了！";
+        }
 
         window.removeEventListener('keydown', handlePlayerMove);
 
@@ -227,17 +239,30 @@ function winGame() {
         const detail = document.getElementById('resultDetail');
 
         detail.innerHTML = `
-    剩餘時間：${count2} 秒（${timeScore} 分）<br>
-    剩餘提燈：${lightuse} 個（${lanternScore} 分）<br>
-    鑽石：${diamondCount} 顆（${diamondScore} 分）<br><br>
-    <strong>總分：${totalScore} 分</strong>
-  `;
+            剩餘時間：${count2} 秒（${timeScore} 分）<br>
+            剩餘提燈：${lightuse} 個（${lanternScore} 分）<br>
+            鑽石：${diamondCount} 顆（${diamondScore} 分）<br><br>
+            <strong>總分：${totalScore} 分</strong>
+        `;
 
         resultBox.classList.remove('hidden2');
+
+        // 修正：檢查玩家是否登入，未登入則不呼叫 saveToLeaderboard()
+        const playerId = sessionStorage.getItem('playerId');
+        if (playerId) {
+            import('./leaderBoard.js').then(({ saveToLeaderboard }) => {
+                saveToLeaderboard(totalScore, count2);
+            });
+        } else {
+            console.warn('玩家未登入，排行榜資料未儲存');
+        }
+
     }, 300);
     // 稍微延遲，避免和畫面重疊
     SoundManager.stopAll();
     SoundManager.endGameAudio('win');
+
+    
 }
 
 function closeResult() {

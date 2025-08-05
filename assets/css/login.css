@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'Cubic11';
-  src: url('../../Game/font_style/Cubic_11.woff2') format('woff2');
+  src: url('../font_style/Cubic_11.woff2') format('woff2');
   font-display: swap;
   
 }
@@ -188,7 +188,7 @@ a {
 #playerIdDisplay {
   text-align: center;
   font-family: 'Cubic11', 'Press Start 2P', monospace;
-  color: #000;
+  color: #fce38a;
 }
 
 #playerIdDisplay.hidden {

@@ -1,12 +1,12 @@
 @font-face {
   font-family: 'Cubic11';
-  src: url(./font_style/Cubic_11.woff2) format('woff2');
+  src: url('../font_style/Cubic_11.woff2') format('woff2');
   font-display: swap;
 }
 
 body {
   font-family: 'Cubic11', 'Press Start 2P', monospace;
-  background-image: url('../HomePage/images2/index_bg2.png');
+  background-image: url('../images/index_bg2.png');
 }
 
 .grid1 {
@@ -14,7 +14,7 @@ body {
   grid-template-columns: repeat(25, 45px);
  
   border: 35px solid transparent;
-  border-image-source: url('./images/rounded-background.png');
+  border-image-source: url('../images/rounded-background.png');
   border-image-slice: 200 200 250 200 fill;
   border-image-width: 45px;
   border-image-repeat: stretch;
@@ -65,14 +65,14 @@ body {
 }
 
 .path {
-  background-image: url('./images/cubblestone.png');
+  background-image: url('../images/cubblestone.png');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .end {
-  background-image: url('./images/cubblestone.png');
+  background-image: url('../images/cubblestone.png');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -86,7 +86,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('./images/door.png');
+  background-image: url('../images/door.png');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -120,7 +120,7 @@ body {
 }
 
 .dead {
-  background-image: url('./images/abyss2.png');
+  background-image: url('../images/abyss2.png');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -137,7 +137,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('./images/fecSAcJ-unscreen.gif');
+  background-image: url('../images/fecSAcJ-unscreen.gif');
   background-size: cover;
    transform: scale(1.15);        
   transform-origin: center; 
@@ -145,7 +145,7 @@ body {
 }
 
 .house {
-  background-image: url('./images/cubblestone.png');
+  background-image: url('../images/cubblestone.png');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -159,7 +159,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('./images/house.png');
+  background-image: url('../images/house.png');
   background-size: 180% 180%;
   background-repeat: no-repeat;
   background-position: center 42%;
@@ -183,7 +183,7 @@ body {
 }  */
 
 .diamond {
-  background-image: url('./images/cubblestone.png');
+  background-image: url('../images/cubblestone.png');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -197,7 +197,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('./images/diamond.gif');
+  background-image: url('../images/diamond.gif');
   background-size: 150% 150%;
   background-repeat: no-repeat;
   background-position: center 55%;
@@ -210,10 +210,10 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('./images/hidden-black-image.png');
+  background-image: url('../images/hidden-black-image.png');
   background-size: cover;
   background-position: center;
-  opacity: 0.9;
+  opacity: 0.95;
   /* 控制遮罩強度 */
   z-index: 10;
 }
@@ -261,6 +261,7 @@ body {
   background-repeat: no-repeat;
   background-position: center;
   pointer-events: none;
+  z-index: 6;
 }
 
 .result-overlay {
@@ -312,4 +313,10 @@ body {
 
 .result-box button:hover {
   transform: scale(1.1);      
+}
+
+.playerIdDisplay{
+  font-size: 30px;
+  color: ffe066;
+  font-weight: bolder;
 }

@@ -1,13 +1,13 @@
 @font-face {
   font-family: 'Cubic11';
-  src: url('../../Game/font_style/Cubic_11.woff2') format('woff2');
+  src: url('../font_style/Cubic_11.woff2') format('woff2');
   font-display: swap;
 }
 
 body {
   font-family: 'Cubic11', 'Press Start 2P', monospace;
   background-color: #2a2a24;
-  background-image: url('../images2/index_bg2.png');
+  background-image: url('../images/index_bg2.png');
   background-size: cover; /* 拉伸圖片鋪滿整個畫面 */
   background-position: center; /* 圖片置中 */
   background-repeat: no-repeat; /* 不重複 */
@@ -29,6 +29,7 @@ h1 {
 
 
 .menu-btn {
+  width: 200px; /* 統一按鈕寬度 */
   padding: 15px 15px;
   margin: 12px;
   font-size: 36px;
@@ -44,5 +45,12 @@ h1 {
 .menu-btn:hover {
   background-color: #ffdf5e;
   transform: scale(1.05);
+}
+
+#authButton {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  width: 200px; /* 與其他按鈕一致 */
 }
 

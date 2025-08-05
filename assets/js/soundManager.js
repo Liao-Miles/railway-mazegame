@@ -21,7 +21,7 @@ const SoundManager = {
 
   load: function (name, src, volume = 1) {
     const audio = new Audio();
-    audio.src = src;
+    audio.src = `./assets/audio/${src}`;
     audio.volume = volume;
     audio.preload = 'auto';
     audio.load();
@@ -52,7 +52,7 @@ const SoundManager = {
       const last = this._lastPlayTime[name] || 0;
       const cooldown = options.cooldown || 300; // 預設 300ms 內不重播
       if (now - last < cooldown) {
-       console.log(`音效 ${name} 單次播放冷卻中，跳過`);
+        console.log(`音效 ${name} 單次播放冷卻中，跳過`);
         return;
       }
       this._lastPlayTime[name] = now;
@@ -147,6 +147,6 @@ const SoundManager = {
   }
 };
 
-SoundManager.load('click', './audio/click-sound.mp3', 1); // 載入點擊音效
+SoundManager.load('click', 'select-sound-fixed-extended.mp3', 1); // 載入點擊音效
 
 export default SoundManager;

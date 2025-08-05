@@ -1,4 +1,4 @@
-import SoundManager from '../../Game/js/soundManager.js'; // 確保引入 SoundManager
+import SoundManager from '../../assets/js/soundManager.js'; // 確保引入 SoundManager
 
 // 切換彈出式框顯示/隱藏
     window.toggleModal = function (show) {
@@ -51,15 +51,17 @@ window.handleLogin = async function (event) {
     });
 
     if (response.status === 200) {
-      const playerName = await response.text();
-      if (!playerName || playerName.trim() === '') {
-        alert('登入失敗：帳號或密碼錯誤');
-        return;
-      }
-      sessionStorage.setItem('playerId', playerName);
-      toggleModal(false);
-      showPlayerInfo(playerName);
-      alert('登入成功！');
+    const result = await response.json(); // 接收 JSON 結構
+    const playerId = result.playerId;
+    const playerName = result.name;
+
+    // 儲存 playerId 與 playerName
+    sessionStorage.setItem('playerId', playerId);
+    sessionStorage.setItem('playerName', playerName);
+
+    toggleModal(false);
+    showPlayerInfo(playerName);
+    alert('登入成功！');
     } else if (response.status === 401) {
       alert('帳號或密碼錯誤');
     } else {
@@ -96,7 +98,7 @@ window.handleRegister = async function (event) {
       toggleModal(false);
       showPlayerInfo(name); 
     } else if (response.status === 409) {
-      alert('帳號或名稱已被註冊');
+      alert('帳號已被註冊');
     } else {
       alert('註冊失敗：' + response.status);
     }
@@ -120,8 +122,10 @@ window.showPlayerInfo = function (playerName) {
 
     // 登出功能
     window.logout = function () {
-      SoundManager.play('click'); // 播放點擊音效
-      sessionStorage.removeItem('playerId'); // 清除登入狀態
+      SoundManager.play('click'); 
+      sessionStorage.removeItem('playerId'); // 清除 playerId
+      sessionStorage.removeItem('playerName'); // 清除 playerName
+
       const playerIdDisplay = document.getElementById('playerIdDisplay');
       const playerInfo = document.getElementById('playerInfo');
       if (playerIdDisplay && playerInfo) {
@@ -134,13 +138,20 @@ window.showPlayerInfo = function (playerName) {
 
     // 檢查登入狀態
     window.onload = function () {
-      const playerId = sessionStorage.getItem('playerId');
-      if (playerId) {
-        showPlayerInfo(playerId);
-      } else {
+    const playerId = sessionStorage.getItem('playerId');
+    const playerName = sessionStorage.getItem('playerName'); 
+
+    if (playerId && playerName) {
+        showPlayerInfo(playerName);
+    } else {
         const playerInfo = document.getElementById('playerInfo');
+        const playerIdDisplay = document.getElementById('playerIdDisplay');
         if (playerInfo) {
-          playerInfo.classList.add('hidden'); // 確保未登入時登出按鈕隱藏
+            playerInfo.classList.add('hidden'); // 確保未登入時登出按鈕隱藏
         }
-      }
-    };
+        if (playerIdDisplay) {
+            playerIdDisplay.textContent = ''; // 確保未登入時不顯示玩家名稱
+        }
+    }
+};
+
