@@ -69,7 +69,7 @@ label{
 
 label > span {
   display: inline-block;
-  width: 80px; /* 固定寬度，讓冒號對齊 */
+  width: 85px; /* 固定寬度，讓冒號對齊 */
 }
 
 label > input {

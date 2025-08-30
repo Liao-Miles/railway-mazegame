@@ -1,9 +1,11 @@
 import {isGameStarted, isGameOver, isPaused,
         checkWarning,checkWarning2,checkWarning3,
-        checkHouseTrigger, setGameOver, restartGame,winGame} from './gameLogic.js' ;
+        checkHouseTrigger, setGameOver, restartGame,winGame, markAsFailed} from './gameLogic.js' ;
 import { currentMap } from './grid.js';
 import {monster,monster2,monster3} from "./monster.js"
 import SoundManager from './soundManager.js'; // 引入 SoundManager
+
+
 
 let player = {
     x: 0,
@@ -54,7 +56,8 @@ function handlePlayerMove(event) {
 
     // 傳回起點
     // 踩到牆，仍要記錄這格被看過
-    if (currentMap[newY][newX] == 0) {
+    if (currentMap[newY][newX] === 0) {
+        markAsFailed();
         seenTiles[newY][newX] = true;
 
         const wallCell = document.querySelector(`.cell[data-x="${newX}"][data-y="${newY}"]`);
@@ -205,7 +208,7 @@ function checkCollision() {
 
         setTimeout(restartGame, 4000);
     }
-} 
+}
 
 export {
     player,

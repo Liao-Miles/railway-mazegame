@@ -213,7 +213,7 @@ body {
   background-image: url('../images/hidden-black-image.png');
   background-size: cover;
   background-position: center;
-  opacity: 0.95;
+  opacity: 0.5;
   /* 控制遮罩強度 */
   z-index: 10;
 }
@@ -317,6 +317,6 @@ body {
 
 .playerIdDisplay{
   font-size: 30px;
-  color: ffe066;
+  color: #ffe066;
   font-weight: bolder;
 }

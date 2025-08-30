@@ -1,0 +1,165 @@
+@font-face {
+    font-family: 'Cubic11';
+    src: url('../font_style/Cubic_11.woff2') format('woff2');
+    font-display: swap;
+}
+
+body {
+    font-family: 'Cubic11', 'Press Start 2P', monospace;
+    background-color: #2a2a24;
+    background-image: url('../images/index_bg2.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #fce38a;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+}
+
+h1 {
+    font-size: 60px;
+    text-shadow: 2px 2px 0 #000;
+    width: 100%;
+    text-align: center;
+    margin: 20px 0;
+}
+
+h3 {
+    font-size: 40px;
+    text-shadow: 2px 2px 0 #000;
+    width: 100%;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.left-title {
+    position: fixed;
+    left: 160px; /* 與 sidebar 左側對齊 */
+    top: 50px;   /* 調整到 sidebar 上方 */
+    color: #fce38a;
+    font-size: 40px;
+    margin: 0;
+}
+
+.menu-btn {
+    width: 120px;
+    padding: 15px 15px;
+    font-size: 24px;
+    background-color: #fce38a;
+    color: #000;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: 'Cubic11','Press Start 2P', monospace;
+    transition: 0.2s;
+    margin-bottom: 15px;
+
+}
+
+.menu-btn:hover {
+    background-color: #ffdf5e;
+    transform: scale(1.05);
+}
+
+.container {
+    display: flex;
+    flex: 1;
+    width: 100%;
+    gap: 32px;
+}
+
+/* ----------------- Sidebar ----------------- */
+.sidebar {
+    width: 260px;
+    min-width: 260px;
+    height: 320px; /* 固定 sidebar 高度，不太長 */
+    padding: 16px;
+    border: 2px solid #fce38a; /* 黃色邊框 */
+    border-radius: 8px;
+    background-color: rgba(0, 0, 0, 0.5); /* 黑色半透明背景 */
+    color: #fce38a; /* 文字黃 */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* 上下拉開 */
+    align-items: center;
+    position: fixed;
+    top: 150px;
+    left: 100px;
+    font-size: 26px; /* 調整文字大小 */
+}
+
+
+.player-info-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* ----------------- 成就區 ----------------- */
+.achievement-area {
+    margin-left: 300px; /* 留出 sidebar 空間 */
+    padding: 50px;
+    flex: 1;
+    height: 100vh;
+    overflow-y: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 220px);
+    grid-auto-rows: 220px; /* 固定每個卡片高度 */
+    justify-content: center; /* 卡片整體左右置中 */
+    column-gap: 80px;
+    row-gap: 80px;
+}
+
+.achievement-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    background: #2a2a24;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    color: #fce38a;
+    font-size: 12px;
+    width: 220px;
+    height: 220px;
+    margin: 0;
+}
+
+.achievement-card h3 {
+    margin: 5px;
+    font-size: 24px;
+}
+
+.achievement-card p {
+    margin: 5px;
+    font-size: 20px;
+    color: #fce38a;
+}
+
+/* 解鎖樣式 */
+.achievement-card.unlocked {
+    background-color: #2a2a24;  /* 原背景色 */
+    color: rgba(252, 222, 123, 0.91);              /* 黃色文字 */
+    border-color: #fce38a;       /* 黃色邊框 */
+    box-shadow: 0 2px 12px rgba(255, 223, 94, 0.8); /* 發光效果 */
+}
+
+/* 解鎖卡片內的描述文字透明一些 */
+.achievement-card.unlocked p {
+    color: rgb(139, 244, 175); /* 黃色但透明 60% */
+}
+
+/* 未解鎖樣式 */
+.achievement-card.locked {
+    background-color: rgba(85, 85, 85, 0.64);   /* 深灰背景 */
+    color: rgba(153, 153, 153, 0.75);              /* 灰色文字 */
+    border-color: #777;       /* 邊框灰 */
+}
+
+/* 解鎖卡片內的描述文字透明一些 */
+.achievement-card.locked p {
+    color: rgba(252, 227, 138, 0.6); /* 黃色但透明 60% */
+}

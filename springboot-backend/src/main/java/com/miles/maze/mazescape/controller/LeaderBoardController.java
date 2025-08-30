@@ -2,15 +2,12 @@ package com.miles.maze.mazescape.controller;
 
 import com.miles.maze.mazescape.dto.LeaderBoardCreateDto;
 import com.miles.maze.mazescape.dto.LeaderBoardDto;
-import com.miles.maze.mazescape.entity.LeaderBoard;
 import com.miles.maze.mazescape.service.LeaderBoardService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/leaderboard")
 public class LeaderBoardController {

@@ -1,8 +1,14 @@
-import{currentMap } from "./grid.js"
-import {player, handlePlayerMove, lightuse,diamondCount} from './player.js' 
+import {currentMap, maps } from "./grid.js"
+import {player, handlePlayerMove, lightuse,diamondCount} from './player.js'
 import {isReachableWithinSteps,monster,monster2,monster3} from "./monster.js"
 import SoundManager from "./soundManager.js";
 
+let hasFailed = false;
+
+// 新增失誤追蹤函數
+function markAsFailed() {
+    hasFailed = true;
+}
 
 // 設定遊戲結束狀態
 function setGameOver(value) {
@@ -208,21 +214,18 @@ function restartGame() {
 
 //遊戲贏了
 let isGameOver = false;
+
 function winGame() {
     isGameOver = true;
 
-    // 玩家消失（移除 .player 類別）
+    // 玩家消失
     const playerCell = document.querySelector('.cell.player');
-    if (playerCell) {
-        playerCell.classList.remove('player');
-    }
+    if (playerCell) playerCell.classList.remove('player');
 
-    document.getElementById('countdown').innerText = " 你贏了 !！";
+    document.getElementById('countdown').innerText = "你贏了 !！";
 
     showFullMap();
-
     window.removeEventListener('keydown', handlePlayerMove);
-
     clearInterval(countdown2);
 
     SoundManager.stopAll();
@@ -244,25 +247,65 @@ function winGame() {
             鑽石：${diamondCount} 顆（${diamondScore} 分）<br><br>
             <strong>總分：${totalScore} 分</strong>
         `;
-
         resultBox.classList.remove('hidden2');
 
-        // 修正：檢查玩家是否登入，未登入則不呼叫 saveToLeaderboard()
         const playerId = sessionStorage.getItem('playerId');
+
+        if (playerId) import('./leaderBoard.js').then(({ saveToLeaderboard }) => saveToLeaderboard(totalScore, count2));
+
+        // --- 成就解鎖 ---
         if (playerId) {
-            import('./leaderBoard.js').then(({ saveToLeaderboard }) => {
-                saveToLeaderboard(totalScore, count2);
+            const achievements = [];
+
+            // 勝利初體驗 / 平安離開
+            achievements.push('平安離開');
+
+            // 尋寶者
+            if (diamondCount >= 4) achievements.push('尋寶者');
+
+            // 完美主義
+            if (!hasFailed) achievements.push('完美主義');
+
+            // 快還要更快
+            if (count2 > 70) achievements.push('快還要更快');
+
+            // 活著真好（通關所有地圖）
+            const currentMapId = Number(sessionStorage.getItem('currentMapId'));
+            let clearedMaps = JSON.parse(localStorage.getItem(`player_${playerId}_maps`) || '[]');
+            clearedMaps = clearedMaps.map(id => Number(id));
+
+            const mapCount = Number(sessionStorage.getItem('mapCount'));
+
+            if (!clearedMaps.includes(currentMapId)) {
+                clearedMaps.push(currentMapId);
+                localStorage.setItem(`player_${playerId}_maps`, JSON.stringify(clearedMaps));
+            }
+
+            if (clearedMaps.length >= mapCount) achievements.push('活著真好');
+
+            // 新增「孤勇闖關」隱藏成就：未進安全屋、未使用提燈
+            if (triggeredHouses.size === 0 && lightuse === 10) achievements.push('全靠自己');
+
+            // 解鎖成就
+            achievements.forEach(name => {
+                fetch('http://localhost:8080/api/achievements/unlock', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ playerId, achievementName: name })
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.success) console.log(`${name} 成就解鎖成功！`);
+                        else console.error(`${name} 成就解鎖失敗`, data);
+                    })
+                    .catch(err => console.error(`解鎖 ${name} 成就出錯:`, err));
             });
-        } else {
-            console.warn('玩家未登入，排行榜資料未儲存');
+
+            // 顯示成就列表
+            displayAchievements(playerId);
         }
 
     }, 300);
-    // 稍微延遲，避免和畫面重疊
-    SoundManager.stopAll();
-    SoundManager.endGameAudio('win');
-
-    
 }
 
 function closeResult() {
@@ -298,5 +341,6 @@ export {
     winGame,
     closeResult,
     restartGame,
-  
+    markAsFailed
+
 }

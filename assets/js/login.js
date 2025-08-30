@@ -109,32 +109,46 @@ window.handleRegister = async function (event) {
 };
 
 
-    // 顯示玩家 ID
+// 顯示玩家 ID 並隱藏登入按鈕
 window.showPlayerInfo = function (playerName) {
   const playerIdDisplay = document.getElementById('playerIdDisplay');
   const playerInfo = document.getElementById('playerInfo');
+  const loginBtn = document.querySelector('button[onclick="toggleModal(true)"]'); // 找到登入按鈕
+
   if (playerIdDisplay && playerInfo) {
     playerIdDisplay.textContent = `歡迎! ${playerName}`;
     playerIdDisplay.classList.remove('hidden');
     playerInfo.classList.remove('hidden'); // 顯示登出按鈕
   }
+
+  if (loginBtn) {
+    loginBtn.classList.add('hidden'); // 隱藏登入按鈕
+  }
 };
 
-    // 登出功能
-    window.logout = function () {
-      SoundManager.play('click'); 
-      sessionStorage.removeItem('playerId'); // 清除 playerId
-      sessionStorage.removeItem('playerName'); // 清除 playerName
+// 登出功能要恢復登入按鈕
+window.logout = function () {
+  SoundManager.play('click');
+  sessionStorage.removeItem('playerId');
+  sessionStorage.removeItem('playerName');
 
-      const playerIdDisplay = document.getElementById('playerIdDisplay');
-      const playerInfo = document.getElementById('playerInfo');
-      if (playerIdDisplay && playerInfo) {
-        playerIdDisplay.classList.add('hidden');
-        playerIdDisplay.textContent = '';
-        playerInfo.classList.add('hidden'); // 隱藏登出按鈕
-      }
-      alert('已登出');
-    };
+  const playerIdDisplay = document.getElementById('playerIdDisplay');
+  const playerInfo = document.getElementById('playerInfo');
+  const loginBtn = document.querySelector('button[onclick="toggleModal(true)"]');
+
+  if (playerIdDisplay && playerInfo) {
+    playerIdDisplay.classList.add('hidden');
+    playerIdDisplay.textContent = '';
+    playerInfo.classList.add('hidden');
+  }
+
+  if (loginBtn) {
+    loginBtn.classList.remove('hidden'); // 登出後顯示登入按鈕
+  }
+
+  alert('已登出');
+};
+
 
     // 檢查登入狀態
     window.onload = function () {

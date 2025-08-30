@@ -60,6 +60,10 @@ const maps = [map1, map2, map3];
 // 隨機選一張地圖
 const randomIndex = Math.floor(Math.random() * maps.length);
 const currentMap = maps[randomIndex];
+// 用陣列索引作為地圖 ID
+sessionStorage.setItem('currentMapId', randomIndex);
+// 新增：儲存地圖總數，避免 gameLogic 與 grid 的循環引用問題
+sessionStorage.setItem('mapCount', maps.length);
 const grid = document.getElementById('grid');
 
 function createGrid() {
@@ -93,5 +97,6 @@ function createGrid() {
 
 export {
     currentMap,
-    createGrid
+    createGrid,
+    maps
 }
