@@ -257,7 +257,7 @@ function winGame() {
         if (playerId) {
             const achievements = [];
 
-            // 勝利初體驗 / 平安離開
+            // 平安離開
             achievements.push('平安離開');
 
             // 尋寶者
@@ -283,7 +283,7 @@ function winGame() {
 
             if (clearedMaps.length >= mapCount) achievements.push('活著真好');
 
-            // 新增「孤勇闖關」隱藏成就：未進安全屋、未使用提燈
+            // 新增「全靠自己」隱藏成就：未進安全屋、未使用提燈
             if (triggeredHouses.size === 0 && lightuse === 10) achievements.push('全靠自己');
 
             // 解鎖成就
@@ -295,11 +295,16 @@ function winGame() {
                 })
                     .then(res => res.json())
                     .then(data => {
-                        if (data.success) console.log(`${name} 成就解鎖成功！`);
-                        else console.error(`${name} 成就解鎖失敗`, data);
+                        if (data.success) {
+                            console.log(`${name} 成就解鎖成功！`);
+                            showAchievementToast(name); //  使用佇列版
+                        } else {
+                            console.error(`${name} 成就解鎖失敗`, data);
+                        }
                     })
                     .catch(err => console.error(`解鎖 ${name} 成就出錯:`, err));
             });
+
 
             // 顯示成就列表
             displayAchievements(playerId);
@@ -307,6 +312,54 @@ function winGame() {
 
     }, 300);
 }
+
+const achievementQueue = [];
+let isShowingToast = false;
+
+function showAchievementToast(name) {
+    achievementQueue.push(name);
+    if (!isShowingToast) {
+        processNextToast();
+    }
+}
+
+function processNextToast() {
+    if (achievementQueue.length === 0) {
+        isShowingToast = false;
+        return;
+    }
+
+    isShowingToast = true;
+    const name = achievementQueue.shift();
+
+    const container = document.getElementById('achievement-toast-container');
+    if (!container) return;
+
+    const toast = document.createElement('div');
+    toast.innerText = ` 成就解鎖：${name}`;
+    toast.style.background = 'rgba(0,0,0,0.8)';
+    toast.style.color = '#fff';
+    toast.style.padding = '10px 15px';
+    toast.style.marginTop = '10px';
+    toast.style.borderRadius = '8px';
+    toast.style.fontSize = '14px';
+    toast.style.fontWeight = 'bold';
+    toast.style.border = '2px solid #FFD700'; // 金色邊框
+    toast.style.boxShadow = '0 0 10px rgba(255, 215, 0, 0.7), 0 0 20px rgba(255, 215, 0, 0.5)';
+    toast.style.boxShadow = '0 2px 6px rgba(0,0,0,0.3)';
+    toast.style.transition = 'opacity 0.5s';
+    toast.style.opacity = '1';
+    container.appendChild(toast);
+
+    setTimeout(() => {
+        toast.style.opacity = '0';
+        setTimeout(() => {
+            container.removeChild(toast);
+            processNextToast(); // 顯示下一個
+        }, 500);
+    }, 2000); // 每個顯示 2 秒
+}
+
 
 function closeResult() {
   document.getElementById('gameResult').classList.add('hidden2');
