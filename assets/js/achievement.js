@@ -1,3 +1,6 @@
+// 先定義統一的 API Base URL
+const API_BASE = 'https://mazegame-production-ffe3.up.railway.app';
+
 document.addEventListener('DOMContentLoaded', async () => {
     const playerId = sessionStorage.getItem('playerId');
     if (!playerId) {
@@ -7,7 +10,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     try {
-        const res = await fetch(`http://localhost:8080/api/achievements/player/${playerId}/achievements`);
+        // fetch 改用 API_BASE
+        const res = await fetch(`${API_BASE}/api/achievements/player/${playerId}/achievements`);
         const data = await res.json();
 
         document.getElementById('playerName').textContent = `玩家名稱：${data.playerName}`;

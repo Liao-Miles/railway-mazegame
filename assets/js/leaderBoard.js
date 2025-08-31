@@ -1,10 +1,12 @@
 
+const API_BASE = 'https://mazegame-production-ffe3.up.railway.app';
+
 function saveToLeaderboard(score, timePlayed) {
   const playerId = sessionStorage.getItem('playerId');
   const playerName = sessionStorage.getItem('playerName') || '未知玩家'; // 預設名稱
 
   if (playerId) {
-    fetch('http://localhost:8080/leaderboard/submit', {
+    fetch(`${API_BASE}/leaderboard/submit`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

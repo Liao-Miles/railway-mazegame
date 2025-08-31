@@ -1,5 +1,7 @@
 import SoundManager from '../../assets/js/soundManager.js'; // 確保引入 SoundManager
 
+const API_BASE = 'https://mazegame-production-ffe3.up.railway.app';
+
 // 切換彈出式框顯示/隱藏
     window.toggleModal = function (show) {
       const modal = document.getElementById('authModal');
@@ -44,7 +46,7 @@ window.handleLogin = async function (event) {
   }
 
   try {
-    const response = await fetch('http://localhost:8080/player/login', {
+    const response = await fetch(`${API_BASE}/player/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ account, password }),
@@ -87,7 +89,7 @@ window.handleRegister = async function (event) {
   }
 
   try {
-    const response = await fetch('http://localhost:8080/player/register', {
+    const response = await fetch(`${API_BASE}/player/register`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name, account, password }),

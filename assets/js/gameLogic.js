@@ -3,6 +3,8 @@ import {player, handlePlayerMove, lightuse,diamondCount} from './player.js'
 import {isReachableWithinSteps,monster,monster2,monster3} from "./monster.js"
 import SoundManager from "./soundManager.js";
 
+const API_BASE = 'https://mazegame-production-ffe3.up.railway.app';
+
 let hasFailed = false;
 
 // 新增失誤追蹤函數
@@ -288,7 +290,7 @@ function winGame() {
 
             // 解鎖成就
             achievements.forEach(name => {
-                fetch('http://localhost:8080/api/achievements/unlock', {
+                fetch(`${API_BASE}/api/achievements/unlock`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ playerId, achievementName: name })
