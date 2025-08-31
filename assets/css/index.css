@@ -20,14 +20,6 @@ body {
   margin: 0;
 }
 
-
-h1 {
-  margin-bottom: 30px;
-  font-size: 80px;
-  text-shadow: 2px 2px 0 #000;
-}
-
-
 .menu-btn {
   width: 200px; /* 統一按鈕寬度 */
   padding: 15px 15px;
@@ -54,3 +46,63 @@ h1 {
   width: 200px; /* 與其他按鈕一致 */
 }
 
+h1 {
+  font-size: 80px;
+  text-shadow: 2px 2px 0 #000;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+h2 {
+  font-size: 60px;
+  text-shadow: 2px 2px 0 #000;
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+h4{
+  font-size: 30px;
+  margin-bottom: 10px;
+
+}
+
+.container {
+  display: flex;
+  gap: 100px;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  max-width: 800px;
+}
+
+.left, .right {
+  flex: 1 1 300px; /* 左右最小寬度 400px */
+  padding: 25px;
+  box-sizing: border-box;
+  background-color: rgba(0,0,0,0.5);
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.7);
+}
+
+h3 {
+  margin-top: 0;
+  color: #fce38a;
+}
+
+ul {
+  padding-left: 20px;
+}
+
+li {
+  margin: 15px;
+  font-size: 15px;
+}
+
+/* 玩家資訊框 */
+.player-info {
+  margin-bottom: 50px;
+  font-size: 24px;
+}
+.hidden {
+  display: none;
+}
