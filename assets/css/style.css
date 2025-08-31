@@ -213,7 +213,7 @@ body {
   background-image: url('../images/hidden-black-image.png');
   background-size: cover;
   background-position: center;
-  opacity: 0.5;
+  opacity: 0.95;
   /* 控制遮罩強度 */
   z-index: 10;
 }
