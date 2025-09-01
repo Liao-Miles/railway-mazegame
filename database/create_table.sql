@@ -1,4 +1,6 @@
 -- auto-generated definition
+USE railway;
+
 create table player
 (
     Id       int(50) unsigned auto_increment
