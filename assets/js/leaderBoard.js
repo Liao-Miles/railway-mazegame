@@ -1,5 +1,5 @@
 
-const API_BASE = 'https://mazegame-production-ffe3.up.railway.app';
+const API_BASE = 'https://mazegame-railway-production.up.railway.app';
 
 function saveToLeaderboard(score, timePlayed) {
   const playerId = sessionStorage.getItem('playerId');

@@ -1,5 +1,5 @@
 // 先定義統一的 API Base URL
-const API_BASE = 'https://mazegame-production-ffe3.up.railway.app';
+const API_BASE = 'https://mazegame-railway-production.up.railway.app';
 
 document.addEventListener('DOMContentLoaded', async () => {
     const playerId = sessionStorage.getItem('playerId');

@@ -14,7 +14,7 @@ public class WebConfig {
             public void addCorsMappings(CorsRegistry registry
             ) {
                 registry.addMapping("/**")
-                        .allowedOrigins("https://mazegame-production-ffe3.up.railway.app")
+                        .allowedOrigins("https://mazegame-railway-production.up.railway.app")
                         .allowedMethods("GET","POST","PUT","DELETE")
                         .allowCredentials(true);
             }
