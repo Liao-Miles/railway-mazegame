@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>成就系統</title>
-    <link rel="stylesheet" href="assets/css/achievements.css" />
+    <link rel="stylesheet" href="/assets/css/achievements.css" />
 </head>
 <body>
 
@@ -23,11 +23,11 @@
 </div>
 
 <script type="module">
-    import SoundManager from 'assets/js/soundManager.js';
-    import 'assets/js/achievement.js'; // 確保成就功能也引入
+    import SoundManager from './assets/js/soundManager.js';
+    import './assets/js/achievement.js';
 
     // 載入點擊音效
-    SoundManager.load('click', 'assets/audio/select-sound-fixed-extended.mp3', 0.8);
+    SoundManager.load('click', '/assets/audio/select-sound-fixed-extended.mp3', 0.8);
 
     // 自動綁定 class="menu-btn" 或 data-sound="click" 的按鈕
     SoundManager.autoBind(280);

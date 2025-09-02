@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>遊戲說明</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="assets/css/index.css" />
+  <link rel="stylesheet" href="/assets/css/index.css" />
 </head>
 <body>
 <h2>遊戲說明</h2>
@@ -45,8 +45,8 @@
   </div>
 
   <script type="module">
-    import SoundManager from 'assets/js/soundManager.js';
-    SoundManager.load('click', 'assets/audio/select-sound-fixed-extended.mp3', 0.8);
+    import SoundManager from './assets/js/soundManager.js';
+    SoundManager.load('click', '/assets/audio/select-sound-fixed-extended.mp3', 0.8);
 
     // 顯示玩家資訊框
     window.showPlayerInfo = function (playerName) {

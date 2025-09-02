@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <title>遊戲排行榜</title>
-  <link rel="stylesheet" href="assets/css/leaderboard.css" />
+  <link rel="stylesheet" href="/assets/css/leaderboard.css" />
 
 
 </head>
@@ -32,10 +32,10 @@
 
     <!-- 最下方 -->
     <script type="module">
-    import SoundManager from 'assets/js/soundManager.js';
-    SoundManager.load('click', 'assets/audio/select-sound-fixed-extended.mp3', 0.8);
+    import SoundManager from './assets/js/soundManager.js';
+    SoundManager.load('click', '/assets/audio/select-sound-fixed-extended.mp3', 0.8);
     SoundManager.autoBind(280);
-    import 'assets/js/leaderBoard.js';
+    import './assets/js/leaderBoard.js';
   </script>
   </div>
 </body>

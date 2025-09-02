@@ -8,10 +8,11 @@ const SoundManager = {
   autoBind: function (delay = 200) {
     document.querySelectorAll('[data-jump]').forEach(button => {
       button.addEventListener('click', () => {
-        const url = button.getAttribute('data-jump');
+        let url = button.getAttribute('data-jump');
         const sound = button.getAttribute('data-sound');
-        
         if (sound) this.play(sound, { single: true });
+        // 統一跳轉為絕對路徑，確保所有頁面都能正確跳轉
+        if (!url.startsWith('/')) url = '/' + url;
         this._timers.push(setTimeout(() => {
           window.location.href = url;
         }, delay));
