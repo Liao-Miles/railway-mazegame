@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="@railway" uuid="53f40178-4e36-4af2-a75c-95923fc41c68">
+    <data-source source="LOCAL" name="mazegame@localhost" uuid="617993d5-93d4-436c-b758-68eb7d6d3aa0">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>$PROJECT_DIR$/springboot-backend/src/main/resources/application.properties</remarks>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://nozomi.proxy.rlwy.net:28293/</jdbc-url>
+      <jdbc-url>jdbc:mysql://localhost/mazegame?useSSL=false&amp;serverTimezone=Asia/Taipei&amp;characterEncoding=utf-8</jdbc-url>
       <jdbc-additional-properties>
         <property name="com.intellij.clouds.kubernetes.db.host.port" />
         <property name="com.intellij.clouds.kubernetes.db.enabled" value="false" />
@@ -14,13 +16,12 @@
       </jdbc-additional-properties>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="mazegame@localhost" uuid="617993d5-93d4-436c-b758-68eb7d6d3aa0">
+    <data-source source="LOCAL" name="mysql" uuid="308243f7-5b44-4ea4-8213-1a4aaab1728a">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <imported>true</imported>
-      <remarks>$PROJECT_DIR$/springboot-backend/src/main/resources/application.properties</remarks>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost/mazegame?useSSL=false&amp;serverTimezone=Asia/Taipei&amp;characterEncoding=utf-8</jdbc-url>
+      <jdbc-url>jdbc:mysql://nozomi.proxy.rlwy.net:28293/</jdbc-url>
       <jdbc-additional-properties>
         <property name="com.intellij.clouds.kubernetes.db.host.port" />
         <property name="com.intellij.clouds.kubernetes.db.enabled" value="false" />
