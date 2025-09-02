@@ -1,5 +1,5 @@
 # Step 1: 使用 Maven + OpenJDK 21 build 專案
-FROM maven:3.9.3-jdk-21-slim AS build
+FROM maven:3.9.6-eclipse-temurin-21 AS build
 WORKDIR /app
 
 # 複製 Maven 配置
@@ -13,7 +13,7 @@ COPY springboot-backend/src ./src
 RUN mvn -f pom.xml clean package -DskipTests
 
 # Step 2: 使用 OpenJDK 21 運行 jar
-FROM openjdk:21-jdk-slim
+FROM eclipse-temurin:21-jdk
 
 WORKDIR /app
 
