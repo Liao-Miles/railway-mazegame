@@ -21,7 +21,7 @@ const SoundManager = {
 
   load: function (name, src, volume = 1) {
     const audio = new Audio();
-    audio.src = `./assets/audio/${src}`;
+    audio.src = `assets/audio/${src}`;
     audio.volume = volume;
     audio.preload = 'auto';
     audio.load();

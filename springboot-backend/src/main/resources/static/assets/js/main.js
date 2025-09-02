@@ -44,12 +44,12 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 
-SoundManager.load('click', '../audio/select-sound-fixed-extended.mp3', 0.8);
-SoundManager.load('start', '../audio/game-start-6104.mp3', 1.0);
-SoundManager.load('bgm', '../audio/retro-game-music(gameMusic).mp3', 0.2);
-SoundManager.load('hurry', '../audio/game-zone-320262.mp3', 0.2);
-SoundManager.load('win', '../audio/game-over(win).mp3', 0.4);
-SoundManager.load('lose', '../audio/game-lose(death).mp3', 0.3);
+SoundManager.load('click', 'assets/audio/select-sound-fixed-extended.mp3', 0.8);
+SoundManager.load('start', 'assets/audio/game-start-6104.mp3', 1.0);
+SoundManager.load('bgm', 'assets/audio/retro-game-music(gameMusic).mp3', 0.2);
+SoundManager.load('hurry', 'assets/audio/game-zone-320262.mp3', 0.2);
+SoundManager.load('win', 'assets/audio/game-over(win).mp3', 0.4);
+SoundManager.load('lose', 'assets/audio/game-lose(death).mp3', 0.3);
 SoundManager.autoBind(280);
 
 gameLogic.isGameStarted;

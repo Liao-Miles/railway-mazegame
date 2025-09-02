@@ -1,4 +1,4 @@
-import SoundManager from '../../assets/js/soundManager.js'; // 確保引入 SoundManager
+import SoundManager from './soundManager.js'; // 確保引入 SoundManager
 
 const API_BASE = 'https://mazegame-railway-production.up.railway.app';
 
