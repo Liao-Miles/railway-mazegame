@@ -10,7 +10,7 @@ RUN mvn dependency:go-offline
 COPY springboot-backend/src ./src
 
 # Build 專案
-RUN mvn clean package -DskipTests
+RUN mvn -f pom.xml clean package -DskipTests
 
 # Step 2: 使用 OpenJDK 21 運行 jar
 FROM openjdk:21-jdk-slim
@@ -20,5 +20,6 @@ WORKDIR /app
 # 複製 build 後的 jar
 COPY --from=build /app/target/maze-escape-0.0.1-SNAPSHOT.jar ./maze-escape.jar
 
+EXPOSE 8080
 # 啟動應用
 CMD ["java", "-jar", "maze-escape.jar"]
