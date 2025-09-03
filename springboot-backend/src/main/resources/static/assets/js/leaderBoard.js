@@ -1,4 +1,3 @@
-
 const API_BASE = 'https://mazegame-railway-production.up.railway.app';
 
 function saveToLeaderboard(score, timePlayed) {
@@ -43,7 +42,7 @@ function loadLeaderboard() {
     return;
   }
 
-  fetch('http://localhost:8080/leaderboard/top10')
+  fetch(`${API_BASE}/leaderboard/top10`)
     .then(res => {
       if (!res.ok) throw new Error('後端回傳錯誤');
       return res.json();
