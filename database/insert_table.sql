@@ -43,7 +43,7 @@ VALUES (
 insert into achievement (name, description, condition_type, condition_value, points)
 values (
            '活著真好',
-           '玩家成功通關所有地圖（目前共有三種地圖）',
+           '玩家成功通關所有地圖',
            'win_all_maps',
            3,
            50
@@ -52,7 +52,7 @@ values (
 -- 成就 6
 INSERT INTO achievement (name, description, condition_type, condition_value, points, hidden)
 VALUES (
-           '孤勇闖關',
+           '全靠自己',
            '不進安全屋、不使用提燈直接抵達終點',
            'custom',
            1,           -- custom 類型可以用 1 表示這個成就
