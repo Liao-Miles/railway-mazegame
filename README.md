@@ -17,44 +17,47 @@
 ---
 ## 專案結構樹狀圖
 
-  .idea/
+```plaintext
+
+.idea/
 database/
- ├── create_table.sql
- └── insert_table.sql
+├── create_table.sql
+└── insert_table.sql
 
 springboot-backend/
- ├── .mvn/wrapper/
- ├── src/
- │   ├── main/
- │   │   ├── java/com/miles/maze/mazescape/
- │   │   │   ├── config/
- │   │   │   ├── controller/
- │   │   │   ├── dto/
- │   │   │   ├── entity/
- │   │   │   ├── repository/
- │   │   │   ├── service/
- │   │   │   └── MazeGmeApplication.java
- │   │   └── resources/
- │   │       ├── static/
- │   │       │   ├── assets/
- │   │       │   │   ├── audio/
- │   │       │   │   ├── css/
- │   │       │   │   ├── font_style/
- │   │       │   │   ├── images/
- │   │       │   │   └── js/
- │   │       │   ├── Level_1.html
- │   │       │   ├── achievements.html
- │   │       │   ├── index.html
- │   │       │   ├── instructions.html
- │   │       │   └── leaderboard.html
- │   │       └── application.properties
- │   └── test/java/com/miles/maze/mazescape/
- ├── .gitattributes
- ├── .gitignore
- ├── mvnw
- ├── mvnw.cmd
- ├── pom.xml
- └── Dockerfile
+├── .mvn/wrapper/
+├── src/
+│   ├── main/
+│   │   ├── java/com/miles/maze/mazescape/
+│   │   │   ├── config/
+│   │   │   ├── controller/
+│   │   │   ├── dto/
+│   │   │   ├── entity/
+│   │   │   ├── repository/
+│   │   │   ├── service/
+│   │   │   └── MazeGmeApplication.java
+│   │   └── resources/
+│   │       ├── static/
+│   │       │   ├── assets/
+│   │       │   │   ├── audio/
+│   │       │   │   ├── css/
+│   │       │   │   ├── font_style/
+│   │       │   │   ├── images/
+│   │       │   │   └── js/
+│   │       │   ├── Level_1.html
+│   │       │   ├── achievements.html
+│   │       │   ├── index.html
+│   │       │   ├── instructions.html
+│   │       │   └── leaderboard.html
+│   │       └── application.properties
+│   └── test/java/com/miles/maze/mazescape/
+├── .gitattributes
+├── .gitignore
+├── mvnw
+├── mvnw.cmd
+├── pom.xml
+└── Dockerfile
+
 
 ---
 
