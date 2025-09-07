@@ -63,7 +63,7 @@ springboot-backend/
 
 ## 資料庫設計 ERD 圖
 
-![ERD 圖](./springboot-backend/src/main/resources/static/assets/images/ERD.png)
+<img src="./springboot-backend/src/main/resources/static/assets/images/ERD.png" width="600">
 
 ---
 
