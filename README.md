@@ -60,7 +60,7 @@ springboot-backend/
 
 ## 資料庫設計 ERD 圖
 
-![ERD 圖](springboot-backend/resources/static/images/ERD.png)
+![ERD 圖](springboot-backend/resources/static/assets/images/ERD.png)
 
 ---
 
@@ -111,7 +111,6 @@ springboot-backend/
   - **行為模式**：
     - **守衛模式**：只在終點 6x6 區域內巡邏，不離開  
     - **追逐模式**：玩家踏入守衛區域立即追擊  
-
 
 ---
 
