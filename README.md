@@ -15,7 +15,7 @@
 - **前端呈現**：HTML/CSS Grid
 
 ---
-## 專案結構樹狀圖
+## 🌲 專案結構樹狀圖
 
 ```plaintext
 
@@ -61,7 +61,7 @@ springboot-backend/
 
 ---
 
-## 資料庫設計 ERD 圖
+## 📄 資料庫設計 ERD 圖
 
 <img src="./springboot-backend/src/main/resources/static/assets/images/ERD.png" width="600">
 
