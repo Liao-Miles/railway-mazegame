@@ -21,6 +21,12 @@ const SoundManager = {
   },
 
   load: function (name, src, volume = 1) {
+    // 確保 src 僅為檔名，避免重複路徑
+    if (src.startsWith('assets/audio/')) {
+      src = src.replace('assets/audio/', '');
+    } else if (src.startsWith('/assets/audio/')) {
+      src = src.replace('/assets/audio/', '');
+    }
     const audio = new Audio();
     audio.src = `/assets/audio/${src}`;
     audio.volume = volume;
