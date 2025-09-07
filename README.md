@@ -15,6 +15,54 @@
 - **前端呈現**：HTML/CSS Grid
 
 ---
+## 專案結構樹狀圖
+
+  .idea/
+database/
+ ├── create_table.sql
+ └── insert_table.sql
+
+springboot-backend/
+ ├── .mvn/wrapper/
+ ├── src/
+ │   ├── main/
+ │   │   ├── java/com/miles/maze/mazescape/
+ │   │   │   ├── config/
+ │   │   │   ├── controller/
+ │   │   │   ├── dto/
+ │   │   │   ├── entity/
+ │   │   │   ├── repository/
+ │   │   │   ├── service/
+ │   │   │   └── MazeGmeApplication.java
+ │   │   └── resources/
+ │   │       ├── static/
+ │   │       │   ├── assets/
+ │   │       │   │   ├── audio/
+ │   │       │   │   ├── css/
+ │   │       │   │   ├── font_style/
+ │   │       │   │   ├── images/
+ │   │       │   │   └── js/
+ │   │       │   ├── Level_1.html
+ │   │       │   ├── achievements.html
+ │   │       │   ├── index.html
+ │   │       │   ├── instructions.html
+ │   │       │   └── leaderboard.html
+ │   │       └── application.properties
+ │   └── test/java/com/miles/maze/mazescape/
+ ├── .gitattributes
+ ├── .gitignore
+ ├── mvnw
+ ├── mvnw.cmd
+ ├── pom.xml
+ └── Dockerfile
+
+---
+
+## 資料庫設計 ERD 圖
+
+![ERD 圖](springboot-backend/resources/static/images/ERD.png)
+
+---
 
 ## 🎮 遊戲操作
 - **W**：向上移動  
