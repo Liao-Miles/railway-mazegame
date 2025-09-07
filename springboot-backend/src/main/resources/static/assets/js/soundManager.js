@@ -22,12 +22,7 @@ const SoundManager = {
 
   load: function (name, src, volume = 1) {
     const audio = new Audio();
-    // 修正路徑重複問題
-    if (!src.startsWith('/assets/audio/')) {
-      audio.src = `assets/audio/${src}`;
-    } else {
-      audio.src = src.startsWith('/') ? src.substring(1) : src;
-    }
+    audio.src = `/assets/audio/${src}`;
     audio.volume = volume;
     audio.preload = 'auto';
     audio.load();
