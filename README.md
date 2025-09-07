@@ -35,7 +35,7 @@ springboot-backend/
 │   │   │   ├── entity/
 │   │   │   ├── repository/
 │   │   │   ├── service/
-│   │   │   └── MazeGmeApplication.java
+│   │   │   └── MazeGameApplication.java
 │   │   └── resources/
 │   │       ├── static/
 │   │       │   ├── assets/
