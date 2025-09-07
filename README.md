@@ -17,50 +17,53 @@
 ---
 ## 專案結構樹狀圖
 
-  .idea/
+```plaintext
+
+.idea/
 database/
- ├── create_table.sql
- └── insert_table.sql
+├── create_table.sql
+└── insert_table.sql
 
 springboot-backend/
- ├── .mvn/wrapper/
- ├── src/
- │   ├── main/
- │   │   ├── java/com/miles/maze/mazescape/
- │   │   │   ├── config/
- │   │   │   ├── controller/
- │   │   │   ├── dto/
- │   │   │   ├── entity/
- │   │   │   ├── repository/
- │   │   │   ├── service/
- │   │   │   └── MazeGmeApplication.java
- │   │   └── resources/
- │   │       ├── static/
- │   │       │   ├── assets/
- │   │       │   │   ├── audio/
- │   │       │   │   ├── css/
- │   │       │   │   ├── font_style/
- │   │       │   │   ├── images/
- │   │       │   │   └── js/
- │   │       │   ├── Level_1.html
- │   │       │   ├── achievements.html
- │   │       │   ├── index.html
- │   │       │   ├── instructions.html
- │   │       │   └── leaderboard.html
- │   │       └── application.properties
- │   └── test/java/com/miles/maze/mazescape/
- ├── .gitattributes
- ├── .gitignore
- ├── mvnw
- ├── mvnw.cmd
- ├── pom.xml
- └── Dockerfile
+├── .mvn/wrapper/
+├── src/
+│   ├── main/
+│   │   ├── java/com/miles/maze/mazescape/
+│   │   │   ├── config/
+│   │   │   ├── controller/
+│   │   │   ├── dto/
+│   │   │   ├── entity/
+│   │   │   ├── repository/
+│   │   │   ├── service/
+│   │   │   └── MazeGmeApplication.java
+│   │   └── resources/
+│   │       ├── static/
+│   │       │   ├── assets/
+│   │       │   │   ├── audio/
+│   │       │   │   ├── css/
+│   │       │   │   ├── font_style/
+│   │       │   │   ├── images/
+│   │       │   │   └── js/
+│   │       │   ├── Level_1.html
+│   │       │   ├── achievements.html
+│   │       │   ├── index.html
+│   │       │   ├── instructions.html
+│   │       │   └── leaderboard.html
+│   │       └── application.properties
+│   └── test/java/com/miles/maze/mazescape/
+├── .gitattributes
+├── .gitignore
+├── mvnw
+├── mvnw.cmd
+├── pom.xml
+└── Dockerfile
+```
 
 ---
 
 ## 資料庫設計 ERD 圖
 
-![ERD 圖](springboot-backend/resources/static/images/ERD.png)
+<img src="./springboot-backend/src/main/resources/static/assets/images/ERD.png" width="600">
 
 ---
 
@@ -111,7 +114,6 @@ springboot-backend/
   - **行為模式**：
     - **守衛模式**：只在終點 6x6 區域內巡邏，不離開  
     - **追逐模式**：玩家踏入守衛區域立即追擊  
-
 
 ---
 
