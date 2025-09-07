@@ -15,7 +15,8 @@
 - **前端呈現**：HTML/CSS Grid
 
 ---
-## 專案結構樹狀圖
+## <img width="512" height="512" alt="圖片" src="https://github.com/user-attachments/assets/4a2ca7cb-c818-44a6-ac18-04f5f8c190a1" />
+ 專案結構樹狀圖
 
 ```plaintext
 
