@@ -1,4 +1,7 @@
-# 🏰 迷宮冒險（Maze Adventure） [遊戲連結](https://mazegame-railway-production.up.railway.app/index.html)
+# 🏰 迷宮冒險（Maze Adventure） 
+
+## [遊戲連結](https://mazegame-railway-production.up.railway.app/index.html)
+### 注意：此專案部署於 Railway 免費方案，首次加載可能需等待
 
 ## 🌟 專案簡介  
 這是一款完整的 **迷宮冒險遊戲專案**，由 **前端 JavaScript 遊戲** 與 **後端 Spring Boot 登錄/排行榜/成就系統** 組成。  
@@ -8,11 +11,20 @@
 
 ---
 
+## ⚡ 技術亮點與挑戰
+
+- **怪物 AI** : 採用BFS演算法去追逐玩家
+- **成就系統** :遊戲勝利後檢查與之對應的成就條件呼叫後端API解鎖成就
+- 
+
+---
+
 ## 🛠 技術架構
 - **前端**：JavaScript (遊戲邏輯、視覺呈現)  
 - **後端**：Spring Boot (帳號註冊、登入、排行榜、成就管理)  
 - **資料庫**：MySQL (存儲玩家帳號、密碼、成就與分數)  
 - **前端呈現**：HTML/CSS Grid
+- **部署**：Railway (自動化部署與雲端運行)
 
 ---
 ## 🌳 專案結構樹狀圖
