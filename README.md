@@ -1,7 +1,7 @@
 # 🏰 迷宮冒險（Maze Adventure） 
 
 ## [遊戲連結](https://mazegame-railway-production.up.railway.app/index.html)
-- ### 注意：此專案部署於 Railway 免費方案，首次加載可能需等待
+ ### 注意：此專案部署於 Railway 免費方案，首次加載可能需等待
 
 ## 🌟 專案簡介  
 這是一款完整的 **迷宮冒險遊戲專案**，由 **前端 JavaScript 遊戲** 與 **後端 Spring Boot 登錄/排行榜/成就系統** 組成。  
