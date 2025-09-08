@@ -1,5 +1,7 @@
-# 🏰 迷宮冒險（Maze Adventure） [遊戲連結](https://mazegame-railway-production.up.railway.app/index.html)
+# 🏰 迷宮冒險（Maze Adventure） 
 
+## [遊戲連結](https://mazegame-railway-production.up.railway.app/index.html) (此專案部署於 Railway 免費方案，首次加載可能需等待)
+ 
 ## 🌟 專案簡介  
 這是一款完整的 **迷宮冒險遊戲專案**，由 **前端 JavaScript 遊戲** 與 **後端 Spring Boot 登錄/排行榜/成就系統** 組成。  
 
@@ -8,14 +10,32 @@
 
 ---
 
+## ⚡ 技術亮點與挑戰
+
+- **怪物 AI**：採用狀態機管理巡邏、追逐、觀察三種模式
+  - **追逐模式**：利用 BFS 演算法計算最短路徑追擊玩家
+  - **巡邏模式 / 觀察模式**：：怪物隨機移動，但避免走回頭路（除非遇到死路才允許回頭）；在觀察模式會暫停一段時間，玩家脫離視野後再回到巡邏模式
+  - **挑戰與解決方案**：
+    - 判斷玩家是否進入視野後即時反應
+    - 避免怪物卡死、移動錯亂、安全屋堵門口
+    - 使用狀態切換來確保 AI 行為穩定
+      
+- **成就系統**：遊戲勝利後檢查成就條件，成功解鎖後呼叫後端 API 更新資料
+  - **隱藏成就**：使用 `HIDDEN` 布林欄位判斷，預設 1 為隱藏，解鎖後改為 0，前端才顯示
+  - **挑戰與解決方案**：
+    - 前後端同步更新成就狀態，確保遊戲中即時反映
+
+---
+
 ## 🛠 技術架構
 - **前端**：JavaScript (遊戲邏輯、視覺呈現)  
 - **後端**：Spring Boot (帳號註冊、登入、排行榜、成就管理)  
 - **資料庫**：MySQL (存儲玩家帳號、密碼、成就與分數)  
 - **前端呈現**：HTML/CSS Grid
+- **部署**：Railway (自動化部署與雲端運行)
 
 ---
-## 專案結構樹狀圖
+## 🌳 專案結構樹狀圖
 
 ```plaintext
 
@@ -35,7 +55,7 @@ springboot-backend/
 │   │   │   ├── entity/
 │   │   │   ├── repository/
 │   │   │   ├── service/
-│   │   │   └── MazeGmeApplication.java
+│   │   │   └── MazeGameApplication.java
 │   │   └── resources/
 │   │       ├── static/
 │   │       │   ├── assets/
@@ -61,7 +81,7 @@ springboot-backend/
 
 ---
 
-## 資料庫設計 ERD 圖
+## 📄 資料庫設計 ERD 圖
 
 <img src="./springboot-backend/src/main/resources/static/assets/images/ERD.png" width="600">
 
