@@ -30,8 +30,8 @@
 
 - **🔐 JWT 安全驗證機制**
   - 採用 **Access Token + Refresh Token** 雙 Token 架構  
-  - **Access Token**：短效（5–15 分鐘），存於 `sessionStorage`  
-  - **Refresh Token**：長效（7–30 天），存於 **HttpOnly Cookie**，自動刷新 Access Token  
+  - **Access Token**：短效（10 分鐘），存於 `sessionStorage`  
+  - **Refresh Token**：長效（15 天），存於 **HttpOnly Cookie**，自動刷新 Access Token  
   - **挑戰與解決方案**：  
     - 防止 XSS 竊取 → Refresh Token 存 HttpOnly Cookie  
     - 減少頻繁登入 → Access Token 過期時由 Refresh Token 自動續期  
