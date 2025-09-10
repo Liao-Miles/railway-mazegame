@@ -3,7 +3,7 @@ import {player, handlePlayerMove, lightuse,diamondCount} from './player.js'
 import {isReachableWithinSteps,monster,monster2,monster3} from "./monster.js"
 import SoundManager from "./soundManager.js";
 
-const API_BASE = 'https://mazegame-railway-production.up.railway.app';
+const API_BASE = 'http://localhost:8080';
 
 let hasFailed = false;
 

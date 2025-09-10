@@ -43,5 +43,4 @@ public class LeaderBoardService {
         leaderBoardRepository.save(lb);
     }
 
-    // 可以加入更多方法，如新增排行榜紀錄等
 }

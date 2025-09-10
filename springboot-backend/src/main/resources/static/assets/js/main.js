@@ -52,6 +52,7 @@ SoundManager.load('win', 'assets/audio/game-over(win).mp3', 0.4);
 SoundManager.load('lose', 'assets/audio/game-lose(death).mp3', 0.3);
 SoundManager.autoBind(280);
 
+// 初始化流程
 gameLogic.isGameStarted;
 gameLogic.isGameOver;
 gameLogic.isPaused;
@@ -64,7 +65,6 @@ player.updatePlayerCell();
 
 window.addEventListener('keydown', player.handlePlayerMove);
 
-// 初始化流程
 monster.drawMonster();
 monster.drawMonster2();
 monster.drawMonster3();

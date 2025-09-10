@@ -1,5 +1,5 @@
 // 先定義統一的 API Base URL
-const API_BASE = 'https://mazegame-railway-production.up.railway.app';
+const API_BASE = 'http://localhost:8080';
 
 document.addEventListener('DOMContentLoaded', async () => {
     const playerId = sessionStorage.getItem('playerId');
