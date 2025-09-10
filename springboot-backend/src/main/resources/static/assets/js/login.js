@@ -1,6 +1,8 @@
 import SoundManager from './soundManager.js'; // 確保引入 SoundManager
+import { setAccessToken, logout as authLogout } from './auth.js';
 
-const API_BASE = 'https://mazegame-railway-production.up.railway.app';
+//(同源部屬可以不用，暫時註解)
+// const API_BASE = 'http://localhost:8080';
 
 // 切換彈出式框顯示/隱藏
     window.toggleModal = function (show) {
@@ -46,7 +48,7 @@ window.handleLogin = async function (event) {
   }
 
   try {
-    const response = await fetch(`${API_BASE}/player/login`, {
+    const response = await fetch(`/player/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ account, password }),
@@ -56,13 +58,12 @@ window.handleLogin = async function (event) {
     const result = await response.json(); // 接收 JSON 結構
     const playerId = result.playerId;
     const playerName = result.name;
+    const accessToken = result.accessToken;
 
     // 儲存 playerId 與 playerName
     localStorage.setItem('playerId', playerId);
     localStorage.setItem('playerName', playerName);
-    if (result.token) {
-      localStorage.setItem('jwtToken', result.token);
-    }
+    setAccessToken(accessToken); // 存 access token
 
     toggleModal(false);
     showPlayerInfo(playerName);
@@ -92,7 +93,7 @@ window.handleRegister = async function (event) {
   }
 
   try {
-    const response = await fetch(`${API_BASE}/player/register`, {
+    const response = await fetch(`/player/register`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name, account, password }),
@@ -100,7 +101,7 @@ window.handleRegister = async function (event) {
 
     if (response.ok) {
       // 註冊成功後自動登入
-      const loginResponse = await fetch(`${API_BASE}/player/login`, {
+      const loginResponse = await fetch(`/player/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ account, password }),
@@ -111,9 +112,7 @@ window.handleRegister = async function (event) {
         const playerName = result.name;
         localStorage.setItem('playerId', playerId);
         localStorage.setItem('playerName', playerName);
-        if (result.token) {
-          localStorage.setItem('jwtToken', result.token);
-        }
+        setAccessToken(result.accessToken); // 自動存 access token
         toggleModal(false);
         showPlayerInfo(playerName);
         alert('註冊並自動登入成功！');
@@ -149,28 +148,10 @@ window.showPlayerInfo = function (playerName) {
   }
 };
 
-// 登出功能要恢復登入按鈕
+// 登出
 window.logout = function () {
-  SoundManager.play('click');
-  localStorage.removeItem('playerId');
-  localStorage.removeItem('playerName');
-  localStorage.removeItem('jwtToken');
-
-  const playerIdDisplay = document.getElementById('playerIdDisplay');
-  const playerInfo = document.getElementById('playerInfo');
-  const loginBtn = document.querySelector('button[onclick="toggleModal(true)"]');
-
-  if (playerIdDisplay && playerInfo) {
-    playerIdDisplay.classList.add('hidden');
-    playerIdDisplay.textContent = '';
-    playerInfo.classList.add('hidden');
-  }
-
-  if (loginBtn) {
-    loginBtn.classList.remove('hidden'); // 登出後顯示登入按鈕
-  }
-
-  alert('已登出');
+  authLogout();
+  location.reload();
 };
 
 

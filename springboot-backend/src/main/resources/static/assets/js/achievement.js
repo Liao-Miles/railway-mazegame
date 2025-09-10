@@ -1,5 +1,7 @@
-// 先定義統一的 API Base URL
-const API_BASE = 'https://mazegame-railway-production.up.railway.app';
+import { authFetch } from './auth.js';
+
+// 先定義統一的 API Base URL (同源部屬可以不用，暫時註解)
+// const API_BASE = 'http://localhost:8080';
 
 document.addEventListener('DOMContentLoaded', async () => {
     // 確保 sessionStorage 有 playerId/playerName
@@ -20,10 +22,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     try {
-        const token = localStorage.getItem('jwtToken');
-        const res = await fetch(`${API_BASE}/api/achievements/player/${playerId}/achievements`, {
-            headers: token ? { 'Authorization': 'Bearer ' + token } : {}
-        });
+        const res = await authFetch(`/api/achievements/player/${playerId}/achievements`);
         const data = await res.json();
 
         document.getElementById('playerName').textContent = `玩家名稱：${data.playerName}`;

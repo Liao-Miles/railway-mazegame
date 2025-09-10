@@ -3,7 +3,8 @@ import {player, handlePlayerMove, lightuse,diamondCount} from './player.js'
 import {isReachableWithinSteps,monster,monster2,monster3} from "./monster.js"
 import SoundManager from "./soundManager.js";
 
-const API_BASE = 'https://mazegame-railway-production.up.railway.app';
+//(同源部屬可以不用，暫時註解)
+// const API_BASE = 'http://localhost:8080';
 
 let hasFailed = false;
 
@@ -291,7 +292,7 @@ function winGame() {
             // 解鎖成就
             const token = localStorage.getItem('jwtToken');
             achievements.forEach(name => {
-                fetch(`${API_BASE}/api/achievements/unlock`, {
+                fetch(`/api/achievements/unlock`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

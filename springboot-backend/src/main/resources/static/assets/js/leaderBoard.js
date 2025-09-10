@@ -1,11 +1,13 @@
-const API_BASE = 'https://mazegame-railway-production.up.railway.app';
+//(同源部屬可以不用，暫時註解)
+// const API_BASE = 'http://localhost:8080';
+import { authFetch } from './auth.js';
 
 function saveToLeaderboard(score, timePlayed) {
   const playerId = localStorage.getItem('playerId');
   const playerName = localStorage.getItem('playerName') || '未知玩家'; // 預設名稱
 
   if (playerId) {
-    fetch(`${API_BASE}/leaderboard/submit`, {
+    authFetch(`/leaderboard/submit`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -42,7 +44,7 @@ function loadLeaderboard() {
     return;
   }
 
-  fetch(`${API_BASE}/leaderboard/top10`)
+  authFetch(`/leaderboard/top10`)
     .then(res => {
       if (!res.ok) throw new Error('後端回傳錯誤');
       return res.json();

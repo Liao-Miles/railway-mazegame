@@ -27,7 +27,10 @@ public class SecurityConfig {
                     "/register.html",
                     "/assets/**",
                     "/api/player/login",
-                    "/api/player/register"
+                    "/api/player/register",
+                    "/player/login",
+                    "/player/register",
+                    "/player/refresh-token"
                 ).permitAll()
                 .requestMatchers("/api/achievements/**").authenticated()
                 .anyRequest().permitAll()

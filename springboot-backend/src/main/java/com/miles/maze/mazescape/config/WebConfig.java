@@ -14,11 +14,10 @@ public class WebConfig {
             public void addCorsMappings(CorsRegistry registry
             ) {
                 registry.addMapping("/**")
-                        .allowedOrigins("https://mazegame-railway-production.up.railway.app")
+                        .allowedOrigins("https://mazegame-railway-production.up.railway.app", "http://localhost:8080")
                         .allowedMethods("GET","POST","PUT","DELETE")
                         .allowCredentials(true);
             }
         };
     }
 }
-
