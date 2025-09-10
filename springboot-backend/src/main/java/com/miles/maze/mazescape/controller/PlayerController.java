@@ -80,7 +80,7 @@ public class PlayerController {
         Cookie refreshCookie = new Cookie("refreshToken", null);
         refreshCookie.setHttpOnly(true);
         refreshCookie.setSecure(false); // 本地測試時設為 false
-        refreshCookie.setPath("/index.html");
+        refreshCookie.setPath("/");
         refreshCookie.setMaxAge(0); // 立即過期
         response.addCookie(refreshCookie);
         return ResponseEntity.ok("已登出");
