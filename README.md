@@ -28,7 +28,7 @@
 - **前端遊戲邏輯模組化**：將遊戲邏輯拆分成多個 JS 模組，依職責分工 
   - **範例模組**：`player.js`（玩家控制）、`monster.js`（怪物 AI）、`grid.js`（地圖生成）、`gameLogic.js`（遊戲邏輯）、`main.js`（主流程控制),etc...
 
-- **🔐 JWT 安全驗證機制**
+- **JWT 安全驗證機制**
   - 採用 **Access Token + Refresh Token** 雙 Token 架構  
   - **Access Token**：短效（10 分鐘），存於 `sessionStorage`  
   - **Refresh Token**：長效（15 天），存於 **HttpOnly Cookie**，自動刷新 Access Token  
