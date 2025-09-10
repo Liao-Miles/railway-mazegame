@@ -59,10 +59,9 @@
   <script type="module" src="/assets/js/main.js"></script>
   <script>
     window.onload = function () {
-        const playerId = sessionStorage.getItem('playerId');
-        const playerName = sessionStorage.getItem('playerName');
+        let playerId = localStorage.getItem('playerId');
+        let playerName = localStorage.getItem('playerName');
         const playerIdDisplay = document.getElementById('playerIdDisplay');
-
         if (playerId && playerName) {
             playerIdDisplay.textContent = `玩家: ${playerName}`;
         } else {

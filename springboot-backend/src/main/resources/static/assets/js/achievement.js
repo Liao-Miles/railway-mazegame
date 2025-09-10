@@ -2,7 +2,17 @@
 const API_BASE = 'https://mazegame-railway-production.up.railway.app';
 
 document.addEventListener('DOMContentLoaded', async () => {
-    const playerId = sessionStorage.getItem('playerId');
+    // 確保 sessionStorage 有 playerId/playerName
+    if (!sessionStorage.getItem('playerId') || !sessionStorage.getItem('playerName')) {
+        const playerId = localStorage.getItem('playerId');
+        const playerName = localStorage.getItem('playerName');
+        if (playerId && playerName) {
+            sessionStorage.setItem('playerId', playerId);
+            sessionStorage.setItem('playerName', playerName);
+        }
+    }
+
+    const playerId = localStorage.getItem('playerId');
     if (!playerId) {
         document.getElementById('playerName').textContent = '玩家：未登入';
         document.getElementById('playerAccount').textContent = '帳號：未登入';
@@ -10,8 +20,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     try {
-        // fetch 改用 API_BASE
-        const res = await fetch(`${API_BASE}/api/achievements/player/${playerId}/achievements`);
+        const token = localStorage.getItem('jwtToken');
+        const res = await fetch(`${API_BASE}/api/achievements/player/${playerId}/achievements`, {
+            headers: token ? { 'Authorization': 'Bearer ' + token } : {}
+        });
         const data = await res.json();
 
         document.getElementById('playerName').textContent = `玩家名稱：${data.playerName}`;

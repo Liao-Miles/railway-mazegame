@@ -28,9 +28,18 @@
 
     // 載入點擊音效
     SoundManager.load('click', '/assets/audio/select-sound-fixed-extended.mp3', 0.8);
-
-    // 自動綁定 class="menu-btn" 或 data-sound="click" 的按鈕
     SoundManager.autoBind(280);
+
+    // 顯示玩家資訊
+    function showPlayerInfo(name, account) {
+        document.getElementById('playerName').textContent = `玩家：${name || '未登入'}`;
+        document.getElementById('playerAccount').textContent = `帳號：${account || '未登入'}`;
+    }
+    window.onload = function () {
+        let playerName = localStorage.getItem('playerName');
+        let playerAccount = localStorage.getItem('playerAccount');
+        showPlayerInfo(playerName, playerAccount);
+    };
 </script>
 
 </body>

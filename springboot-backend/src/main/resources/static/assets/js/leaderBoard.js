@@ -1,8 +1,8 @@
 const API_BASE = 'https://mazegame-railway-production.up.railway.app';
 
 function saveToLeaderboard(score, timePlayed) {
-  const playerId = sessionStorage.getItem('playerId');
-  const playerName = sessionStorage.getItem('playerName') || '未知玩家'; // 預設名稱
+  const playerId = localStorage.getItem('playerId');
+  const playerName = localStorage.getItem('playerName') || '未知玩家'; // 預設名稱
 
   if (playerId) {
     fetch(`${API_BASE}/leaderboard/submit`, {
@@ -32,7 +32,7 @@ function saveToLeaderboard(score, timePlayed) {
 }
 
 function loadLeaderboard() {
-  const playerId = sessionStorage.getItem('playerId');
+  const playerId = localStorage.getItem('playerId');
   if (!playerId) {
     console.warn('未登入，排行榜不顯示');
     const leaderboardBody = document.getElementById('leaderboard-body');

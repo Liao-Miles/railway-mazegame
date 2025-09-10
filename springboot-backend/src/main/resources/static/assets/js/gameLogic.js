@@ -251,7 +251,7 @@ function winGame() {
         `;
         resultBox.classList.remove('hidden2');
 
-        const playerId = sessionStorage.getItem('playerId');
+        const playerId = localStorage.getItem('playerId');
 
         if (playerId) import('./leaderBoard.js').then(({ saveToLeaderboard }) => saveToLeaderboard(totalScore, count2));
 
@@ -272,11 +272,11 @@ function winGame() {
             if (count2 > 70) achievements.push('快還要更快');
 
             // 活著真好（通關所有地圖）
-            const currentMapId = Number(sessionStorage.getItem('currentMapId'));
+            const currentMapId = Number(localStorage.getItem('currentMapId'));
             let clearedMaps = JSON.parse(localStorage.getItem(`player_${playerId}_maps`) || '[]');
             clearedMaps = clearedMaps.map(id => Number(id));
 
-            const mapCount = Number(sessionStorage.getItem('mapCount'));
+            const mapCount = Number(localStorage.getItem('mapCount'));
 
             if (!clearedMaps.includes(currentMapId)) {
                 clearedMaps.push(currentMapId);
@@ -289,10 +289,14 @@ function winGame() {
             if (triggeredHouses.size === 0 && lightuse === 10) achievements.push('全靠自己');
 
             // 解鎖成就
+            const token = localStorage.getItem('jwtToken');
             achievements.forEach(name => {
                 fetch(`${API_BASE}/api/achievements/unlock`, {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: {
+                        'Content-Type': 'application/json',
+                        ...(token ? { 'Authorization': 'Bearer ' + token } : {})
+                    },
                     body: JSON.stringify({ playerId, achievementName: name })
                 })
                     .then(res => res.json())

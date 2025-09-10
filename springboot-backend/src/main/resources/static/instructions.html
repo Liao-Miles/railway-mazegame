@@ -26,7 +26,7 @@
     <ul>
       <li>怪物會在迷宮中巡邏，被抓到遊戲結束</li>
       <li>安全屋：怪物無法進入，進入後可暫停時間並短暫點亮地圖</li>
-      <li>找到所有安全屋後，地圖將永久全亮</li>
+      <li>找到所有安全屋後，地圖將永久點亮</li>
       <li>鑽石：收集可獲得額外分數</li>
       <li>提燈：有限資源，請謹慎使用</li>
       <li>分數來源：剩餘時間、鑽石、提燈</li>
@@ -60,17 +60,15 @@
 
     // 檢查登入狀態
     window.onload = function () {
-      const playerId = sessionStorage.getItem('playerId');
-      const playerName = sessionStorage.getItem('playerName');
+      let playerId = localStorage.getItem('playerId');
+      let playerName = localStorage.getItem('playerName');
       const playerIdDisplay = document.getElementById('playerIdDisplay');
-
       if (playerId && playerName) {
         showPlayerInfo(playerName);
       } else {
         playerIdDisplay.textContent = ''; // 確保未登入時不顯示玩家名稱
       }
     };
-
 
     SoundManager.autoBind(280);
   </script>

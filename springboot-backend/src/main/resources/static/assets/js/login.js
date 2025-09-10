@@ -58,8 +58,11 @@ window.handleLogin = async function (event) {
     const playerName = result.name;
 
     // 儲存 playerId 與 playerName
-    sessionStorage.setItem('playerId', playerId);
-    sessionStorage.setItem('playerName', playerName);
+    localStorage.setItem('playerId', playerId);
+    localStorage.setItem('playerName', playerName);
+    if (result.token) {
+      localStorage.setItem('jwtToken', result.token);
+    }
 
     toggleModal(false);
     showPlayerInfo(playerName);
@@ -96,9 +99,27 @@ window.handleRegister = async function (event) {
     });
 
     if (response.ok) {
-      alert('註冊成功！');
-      toggleModal(false);
-      showPlayerInfo(name); 
+      // 註冊成功後自動登入
+      const loginResponse = await fetch(`${API_BASE}/player/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ account, password }),
+      });
+      if (loginResponse.status === 200) {
+        const result = await loginResponse.json();
+        const playerId = result.playerId;
+        const playerName = result.name;
+        localStorage.setItem('playerId', playerId);
+        localStorage.setItem('playerName', playerName);
+        if (result.token) {
+          localStorage.setItem('jwtToken', result.token);
+        }
+        toggleModal(false);
+        showPlayerInfo(playerName);
+        alert('註冊並自動登入成功！');
+      } else {
+        alert('註冊成功但自動登入失敗，請手動登入');
+      }
     } else if (response.status === 409) {
       alert('帳號已被註冊');
     } else {
@@ -131,8 +152,9 @@ window.showPlayerInfo = function (playerName) {
 // 登出功能要恢復登入按鈕
 window.logout = function () {
   SoundManager.play('click');
-  sessionStorage.removeItem('playerId');
-  sessionStorage.removeItem('playerName');
+  localStorage.removeItem('playerId');
+  localStorage.removeItem('playerName');
+  localStorage.removeItem('jwtToken');
 
   const playerIdDisplay = document.getElementById('playerIdDisplay');
   const playerInfo = document.getElementById('playerInfo');
@@ -154,9 +176,8 @@ window.logout = function () {
 
     // 檢查登入狀態
     window.onload = function () {
-    const playerId = sessionStorage.getItem('playerId');
-    const playerName = sessionStorage.getItem('playerName'); 
-
+    let playerId = localStorage.getItem('playerId');
+    let playerName = localStorage.getItem('playerName');
     if (playerId && playerName) {
         showPlayerInfo(playerName);
     } else {
@@ -170,4 +191,3 @@ window.logout = function () {
         }
     }
 };
-
