@@ -23,16 +23,27 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
-        String token = getJwtFromRequest(request);
-        if (StringUtils.hasText(token) && jwtUtil.validateToken(token)) {
-            Claims claims = jwtUtil.getClaims(token);
-            String username = claims.getSubject();
-            UsernamePasswordAuthenticationToken authentication =
-                    new UsernamePasswordAuthenticationToken(username, null, null);
-            authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-            SecurityContextHolder.getContext().setAuthentication(authentication);
+        try {
+            String token = getJwtFromRequest(request);
+            if (StringUtils.hasText(token)) {
+                if (jwtUtil.validateToken(token)) {
+                    // token 有效 → 設置認證資訊
+                    Claims claims = jwtUtil.getClaims(token);
+                    String username = claims.getSubject();
+                    UsernamePasswordAuthenticationToken authentication =
+                            new UsernamePasswordAuthenticationToken(username, null, null);
+                    authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                    SecurityContextHolder.getContext().setAuthentication(authentication);
+                } else {
+                    // token 過期或無效 → 回 401
+                    response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Token expired or invalid");
+                    return; // 不再繼續 filterChain
+                }
+            }
+            filterChain.doFilter(request, response);
+        } catch (Exception e) {
+            response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Authentication failed");
         }
-        filterChain.doFilter(request, response);
     }
 
     private String getJwtFromRequest(HttpServletRequest request) {
@@ -43,4 +54,3 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         return null;
     }
 }
-
