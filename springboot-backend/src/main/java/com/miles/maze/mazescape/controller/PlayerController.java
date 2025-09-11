@@ -79,7 +79,7 @@ public class PlayerController {
     public ResponseEntity<?> logout(HttpServletResponse response) {
         Cookie refreshCookie = new Cookie("refreshToken", null);
         refreshCookie.setHttpOnly(true);
-        refreshCookie.setSecure(false); // 本地測試時設為 false
+        refreshCookie.setSecure(true); // 本地測試時設為 false
         refreshCookie.setPath("/");
         refreshCookie.setMaxAge(0); // 立即過期
         response.addCookie(refreshCookie);
