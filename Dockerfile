@@ -1,5 +1,5 @@
 # Step 1: 使用 Maven + OpenJDK 21 build 專案
-FROM maven:3.9.6-eclipse-temurin-21 AS build
+FROM maven:3.9.9-eclipse-temurin-21 AS build
 WORKDIR /app
 
 # 複製 Maven 配置
